@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class UserTabelSeeder extends Seeder
+class UsersTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,7 +11,7 @@ class UserTabelSeeder extends Seeder
      */
     public function run()
     {
-        //フェイカー　テストデータを入れた
+        //
         factory(App\User::class, 50)->create();
     }
 }
