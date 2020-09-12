@@ -50,6 +50,11 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if ($exception instanceof \Illuminate\Contracts\Encryption\DecryptException) {
+            return response()->json([
+                'message' => 'The Payload is invalid'
+            ], 400);
+        }
         return parent::render($request, $exception);
     }
 }
