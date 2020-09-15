@@ -13,6 +13,8 @@ class User extends Authenticatable
 
     // 論理削除機能
     use SoftDeletes;
+    
+    protected $table = 'users';
     protected $dates = ['deleted_at'];
 
     /**

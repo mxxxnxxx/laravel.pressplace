@@ -30,7 +30,16 @@
                             <label for="age" class="col-md-4 col-form-label text-md-right">{{ __('Age') }}</label>
 
                             <div class="col-md-6">
-                                <input id="age" type="text" class="form-control @error('age') is-invalid @enderror" name="age" value="{{ old('age') }}" required autocomplete="age" autofocus>
+                                {{--  <input id="age" type="text" class="form-control @error('age') is-invalid @enderror" name="age" value="{{ old('age') }}" required autocomplete="age" autofocus>  --}}
+                                <select id="age"　 class="form-control @error('age') is-invalid @enderror" name="age" value="{{ old('age') }}" required autocomplete="age" autofocus>
+                                    <option value="">-----</option>
+                                        @for ($i = 0; $i <= 100; $i++)
+                                            <option value="{{ $i }}歳">{{ $i }}歳</option>
+                                        @endfor
+                                </select>
+
+
+
 
                                 @error('age')
                                     <span class="invalid-feedback" role="alert">
