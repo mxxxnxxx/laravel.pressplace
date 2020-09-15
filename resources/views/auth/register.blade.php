@@ -34,7 +34,7 @@
                                 <select id="age"　 class="form-control @error('age') is-invalid @enderror" name="age" value="{{ old('age') }}" required autocomplete="age" autofocus>
                                     <option value="">-----</option>
                                         @for ($i = 0; $i <= 100; $i++)
-                                            <option value="{{ $i }}歳">{{ $i }}歳</option>
+                                            <option value="{{ $i }}">{{ $i }}</option>
                                         @endfor
                                 </select>
 
