@@ -31,10 +31,10 @@
 
                             <div class="col-md-6">
                                 {{--  <input id="age" type="text" class="form-control @error('age') is-invalid @enderror" name="age" value="{{ old('age') }}" required autocomplete="age" autofocus>  --}}
-                                <select id="age"　 class="form-control @error('age') is-invalid @enderror" name="age" value="{{ old('age') }}" required autocomplete="age" autofocus>
-                                    <option value="">-----</option>
+                                <select id="age"　 class="form-control @error('age') is-invalid @enderror" name="age" value="{{ old('age') }}">
+                                    
                                         @for ($i = 0; $i <= 100; $i++)
-                                            <option value="{{ $i }}">{{ $i }}</option>
+                                            <option value="{{ $i }}" @if(old('age')== $i) selected @endif >{{ $i }}</option>
                                         @endfor
                                 </select>
 
