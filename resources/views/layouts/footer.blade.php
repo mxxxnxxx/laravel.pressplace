@@ -1,4 +1,4 @@
-@extends('layouts.parent')
+
 @section('footer')
 <footer>
     フッター
