@@ -20,8 +20,8 @@ class UserController extends Controller
     // ユーザー情報の編集を行う変数に編集したい自分の$idを渡す
     // $idはurlパラメータ
     public function edit($id){
-
-        $user = Auth::user();
+        // 受け取った$idでレコード検索
+        $user = Auth::findOrFail($id);
         
         return view('user.edit', ['user' => $user ]);
 
