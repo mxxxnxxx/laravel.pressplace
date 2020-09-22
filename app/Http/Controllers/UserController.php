@@ -17,6 +17,15 @@ class UserController extends Controller
         return view('user.index', [ 'auth' => $user ]);
     }
     
+    // ユーザー情報の編集を行う変数に編集したい自分の$idを渡す
+    // $idはurlパラメータ
+    public function edit($id){
+
+        $user = Auth::user();
+        
+        return view('user.edit', ['user' => $user ]);
+
+    }
     
     
 }
