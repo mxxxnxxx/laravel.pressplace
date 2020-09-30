@@ -14,15 +14,16 @@
 use App\Http\Controllers\UserController;
 use Whoops\Run;
 
-Route::get('/user/{id}', 'UserController@index')->name('user.index');
-// Route::resource('users', 'UserController');
-
 Route::get('/', function () {
     return view('top');
 });
+// Route::resource('users', 'UsersController', ['only' => ['index', 'create', 'store']]);
 
-Route::get('user/edit/{id}', 'UserController@edit')->name('user.edit');
-Route::post('user/update/{id}', 'UserController@update')->name('user.update');
+Route::resource('user', 'UserController');
+
+// Route::get('/user/{id}', 'UserController@index')->name('user.index');
+// Route::get('user/edit/{id}', 'UserController@edit')->name('user.edit');
+// Route::post('user/update/{id}', 'UserController@update')->name('user.update');
 // Route::get('/','TopController@index');
 
 Auth::routes();
