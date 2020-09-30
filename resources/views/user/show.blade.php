@@ -7,7 +7,7 @@
 
 @section('content')
     <div class="container">
-      <a href="edit/{id}" class="profile_editing">プロフィール編集</a>
+      <a href={{ route('user.edit',['user' => auth()->user()->id]) }} class="profile_editing">プロフィール編集</a>
       <div class="user_image"></div>
 
       <div class="user_name"></div>

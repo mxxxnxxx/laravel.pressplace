@@ -38,7 +38,7 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     {{--  マイページへのリンク  --}}
-                                    <a class="dropdown-item" href="{{ 'user/auth()->user()->id' }}">
+                                    <a class="dropdown-item" href={{ route('user.show',['user' => auth()->user()->id]) }}>
                                         マイページ
                                     </a>
 
