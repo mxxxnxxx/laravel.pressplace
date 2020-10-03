@@ -20,6 +20,7 @@ Route::get('/', function () {
 // Route::resource('users', 'UsersController', ['only' => ['index', 'create', 'store']]);
 
 Route::resource('user', 'UserController');
+Route::get('user/{user} ', 'UserController@softdelete');
 
 // Route::get('/user/{id}', 'UserController@index')->name('user.index');
 // Route::get('user/edit/{id}', 'UserController@edit')->name('user.edit');
