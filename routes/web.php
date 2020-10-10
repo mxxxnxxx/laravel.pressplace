@@ -17,11 +17,17 @@ use Whoops\Run;
 Route::get('/', function () {
     return view('top');
 });
+
+
+Route::group(['middleware' => ['web']], function () {
+    Route::resource('user', 'UserController');
+    Route::get('user/delete/{user} ', 'UserController@softdelete')->name('user.softdelete');
+});
 // Route::resource('users', 'UsersController', ['only' => ['index', 'create', 'store']]);
 
-Route::resource('user', 'UserController');
-Route::get('user/{user} ', 'UserController@softdelete');
 
+
+// Route::get('user/update/{user}', 'UserController@store')
 // Route::get('/user/{id}', 'UserController@index')->name('user.index');
 // Route::get('user/edit/{id}', 'UserController@edit')->name('user.edit');
 // Route::post('user/update/{id}', 'UserController@update')->name('user.update');
