@@ -7,39 +7,52 @@
 
 @section('content')
     <div class="container">
-      <a href={{ route('user.edit',['user' => auth()->user()->id]) }} class="profile_editing">プロフィール編集</a>
-      <div class="user_image"></div>
 
-      <div class="user_name"></div>
+      <a href={{ route('user.edit',['user' => Auth::user()->id]) }} class="profile_editing">プロフィール編集</a>
       
-      <div class="user_introduction"></div>
-        {{--  @if (ユーザーの自己紹介がある時)  --}}
-        {{--  else  --}}
-        {{--  <a href="編集ページへのリンク">自己紹介を書く</a>  --}}
-        {{--  @endif  --}}
-
-      <div class="user_pressplace">
-        {{--  @if (ユーザーのpressがある時)  --}}
-        {{--  prees内容が繰り返しで並ぶ  --}}
-          {{--  @foreach ($places as $place)  --}}
-              {{--  <div class=""></div>  --}}
-                
-
-              {{--  以下でdbより自分の投稿のみを取得  --}}
-                  {{--  @yield('pressplace')  --}}
-
-          {{--  @endforeach  --}}
-
-        {{--  @else  --}}
-        {{--  pressがありません  --}}
-        {{--  @endif  --}}
+      <h1 class="user_name">{{ $user->name }}</h1>
+    
+      <div class="user_image">
+            @if (!empty($user->user_image))
+                <img src="{{ asset('storage/user_image/' . $user->user_image) }}" alt="プロフィール画像">
+            @else
+                <img src="{{ asset('storage/user_image/default.png') }}" alt="プロフィール画像">
+            @endif
       </div>
+
+
+      <div class="user_name">{{ Auth::user()->name }}</div>
       
+      <div class="user_introduction">自己紹介
+        @if (!empty($user->introduction))
+          <div class="user_introduction_in">{{ Auth::user()->introduction }}</div>
+        @else
+          <a href={{ route('user.edit',['user' => Auth::user()->id]) }}>自己紹介を書く</a>
+        @endif
+      </div>
+
+<p>ここに投稿が並ぶ予定</p>
+      {{--  <div class="user_pressplace">
+        @if (!empty(ログインしているユーザーに紐付いたpressplaceがあるかどうか))
+        
+          @foreach ($places as $place)
+              <div class=""></div>
+
+                  @yield('pressplace')
+
+          @endforeach
+
+        @else
+        pressがありません
+        @endif
+      </div>  --}}
+<p>ここにページネーション</p>
+{{--        
       <div class="paginate">
-      {{--  ↓以下はページネーション　10投稿ずつ  --}}
-      {{--  {{ $posts->links() }}  --}}
-      </div>
+      {{ $posts->links() }}
+      </div>  --}}
 
     </div>
+
 @endsection
 

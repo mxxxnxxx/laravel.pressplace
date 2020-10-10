@@ -14,8 +14,9 @@ class User extends Authenticatable
     // 論理削除機能
     use SoftDeletes;
     
-    protected $table = 'users';
-    protected $dates = ['deleted_at'];
+    // protected $table = 'users';
+    // protected $dates = ['deleted_at'];
+    // protected $fillable = ['body'];
 
     /**
      * The attributes that are mass assignable.
@@ -23,7 +24,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'user_image', 'age', 'introduction',
+        'name', 'email', 'password', 'user_image', 'introduction',
     ];
 
     /**
