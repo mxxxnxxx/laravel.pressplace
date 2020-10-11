@@ -2,8 +2,8 @@
 
 namespace App;
 
-+ use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
-+ use Illuminate\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
+use Illuminate\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
