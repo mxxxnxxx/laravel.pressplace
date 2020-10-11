@@ -87,10 +87,15 @@ class UserController extends Controller
     }
 
 
+// ソフトデリート確認画面表示
+    public function confirmationSoftdelete(){
+        $user = Auth::user();
+        return view('user.confirmationSoftdelete', ['user' => $user]);
+    }
 
     // ソフトデリート
-    public function softdelete($id){
-        $user = Auth::user($id);
+    public function softdelete(){
+        $user = Auth::user();
         $user->delete();
         return redirect()->to('/');
     }

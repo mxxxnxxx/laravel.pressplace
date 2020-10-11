@@ -15,8 +15,7 @@
   @method('PATCH')
    <label for="name">名前</label>
       <input type="text" name="name" value="{{ $user->name }}" />
-  <label for="email">メールアドレス</label>
-      <input type="text" name="email" value="{{ $user->email }}" /><br />
+  
       
 
   <label for="user_image">プロフィール画像</label>
@@ -26,7 +25,9 @@
   </label>
 
   <label for="introduction">自己紹介</label>
-  <textarea name="introduction" rows="4" cols="40"  >{{ old('introduction') }}</textarea>
+  <textarea name="introduction" rows="4" cols="40"　>
+  {{ (old('introduction',$user->introduction) ) }}
+  </textarea>
 
 {{-- エラー --}}
 
@@ -38,15 +39,15 @@
     </ul>
 @endif
 
- {{-- <a href="メールアドレス変更画面へのリンク">メールアドレス変更</a> --}}
-{{-- <a href="パスワード変更画面へのリンク">パスワード変更画面へのリンク</a> --}}
 
     {{-- ボタン --}}
-    <button type="submit" class="btn btn-primary">
-      変更
-    </button>
+    <button type="submit" class="btn btn-primary">変更</button>
 
 </form>
+
+ {{-- <a href="メールアドレス変更画面へのリンク">メールアドレス変更</a> --}}
+{{-- <a href="パスワード変更画面へのリンク">パスワード変更画面へのリンク</a> --}}
+<a href={{ route('user.confirmationSoftdelete',['user' => $user->id]) }}>アカウントを削除する</a>
 @endsection
 
 
