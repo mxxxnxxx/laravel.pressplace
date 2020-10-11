@@ -21,7 +21,8 @@ Route::get('/', function () {
 
 Route::group(['middleware' => ['web']], function () {
     Route::resource('user', 'UserController');
-    Route::get('user/delete/{user} ', 'UserController@softdelete')->name('user.softdelete');
+    Route::get('user/confirmation/{user} ', 'UserController@softdelete')->name('user.softdelete');
+    Route::get('user/delete/{user} ', 'UserController@confirmationSoftdelete')->name('user.confirmationSoftdelete');
 });
 // Route::resource('users', 'UsersController', ['only' => ['index', 'create', 'store']]);
 
@@ -33,6 +34,7 @@ Route::group(['middleware' => ['web']], function () {
 // Route::post('user/update/{id}', 'UserController@update')->name('user.update');
 // Route::get('/','TopController@index');
 
-Auth::routes();
+// Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
