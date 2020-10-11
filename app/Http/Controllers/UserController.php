@@ -9,6 +9,9 @@ use App\Http\Requests\UserRequest;
 
 class UserController extends Controller
 {
+    // メール認証
+    $this->middleware(['auth','verified']);
+    
     //ユーザーページ表示を行う記述
     public function show(){
         // 以下でユーザー情報をにゅうしゅしている

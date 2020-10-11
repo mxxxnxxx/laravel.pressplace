@@ -18,14 +18,15 @@ Route::get('/', function () {
     return view('top');
 });
 
-
-Route::group(['middleware' => ['web']], function () {
-    Route::resource('user', 'UserController');
-    Route::get('user/confirmation/{user} ', 'UserController@softdelete')->name('user.softdelete');
-    Route::get('user/delete/{user} ', 'UserController@confirmationSoftdelete')->name('user.confirmationSoftdelete');
-});
-// Route::resource('users', 'UsersController', ['only' => ['index', 'create', 'store']]);
-
+// メール認証していないと操作できないように指定
+Route::group(['middleware' => ['auth','verified']], function () {
+    // フォームリクエストで$errorが使えるように記述
+    Route::group(['middleware' => ['web']], function () {
+        Route::resource('user', 'UserController');
+        Route::get('user/confirmation/{user} ', 'UserController@softdelete')->name('user.softdelete');
+        Route::get('user/delete/{user} ', 'UserController@confirmationSoftdelete')->name('user.confirmationSoftdelete');
+    });
+}
 
 
 // Route::get('user/update/{user}', 'UserController@store')
