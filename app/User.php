@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable implements MustVerifyEmailContract
 {
+    // メール認証での記述
     use MustVerifyEmail, Notifiable;
 
     // 論理削除機能

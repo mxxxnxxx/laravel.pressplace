@@ -26,7 +26,7 @@ Route::group(['middleware' => ['auth','verified']], function () {
         Route::get('user/confirmation/{user} ', 'UserController@softdelete')->name('user.softdelete');
         Route::get('user/delete/{user} ', 'UserController@confirmationSoftdelete')->name('user.confirmationSoftdelete');
     });
-}
+});
 
 
 // Route::get('user/update/{user}', 'UserController@store')

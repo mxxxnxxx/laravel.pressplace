@@ -9,9 +9,7 @@ use App\Http\Requests\UserRequest;
 
 class UserController extends Controller
 {
-    // メール認証
-    $this->middleware(['auth','verified']);
-    
+
     //ユーザーページ表示を行う記述
     public function show(){
         // 以下でユーザー情報をにゅうしゅしている
@@ -24,18 +22,16 @@ class UserController extends Controller
     // ユーザー情報の編集を行う変数に編集したい自分の$idを渡す
     // $idはurlパラメータ
     public function edit($id){
+
+        // メール認証している時だけ
+        $this->middleware(['auth', 'verified']);
+        
         // 受け取った$idでレコード検索
         $user = Auth::user($id);
         
         return view('user.edit', ['user' => $user ]);
 
     }
- 
-
-  
-
-
-
 
     // 実際にデータベースに情報を更新
     public function update($id, UserRequest $request){
