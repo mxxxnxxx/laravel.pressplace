@@ -17,7 +17,7 @@ class CreatePlacesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->text('comment');
-            $table->string('place_image')->default('default.png');
+            $table->string('place_image');
             $table->bigInteger('user_id')->unsigned();
             $table->timestamps();
             $table->softDeletes();
