@@ -20,6 +20,7 @@ class CreatePlacesTable extends Migration
             $table->string('place_image')->default('default.png');
             $table->bigInteger('user_id')->unsigned();
             $table->timestamps();
+            $table->softDeletes();
             $table->foreign('user_id')->references('id')->on('users');
         });
     }
