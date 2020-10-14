@@ -12,10 +12,13 @@
 */
 
 use App\Http\Controllers\UserController;
+// use Illuminate\Routing\Route;
+use vendor\laravel\framework\src\Illuminate\Routing;
 use Whoops\Run;
 
+Route::get('/place','PlaceController@index')->name('place.index');
 Route::get('/', function () {
-    return view('top');
+    return redirect('/place');
 });
 
 // メール認証していないと操作できないように指定

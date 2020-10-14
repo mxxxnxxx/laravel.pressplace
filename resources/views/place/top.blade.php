@@ -14,13 +14,13 @@
                 <td>{{ $place->user->name }}</td>
                 <td>{{ $place->place_image }}</td>
                 <td>
-                  <a href={{ route('place.show', ['id' =>  $place->id]) }}>
+                  {{--  <a href={{ route('place.show', ['id' =>  $place->id]) }}>  --}}
                     {{ $place->name }}
-                  </a>
+                  {{--  </a>  --}}
                 </td>
                 <td>{{ $place->address }}</td>
                 <td>{{ $place->comment }}</td>
-                <td>{{ $place->tag->name }}</td>
+                {{--  <td>{{ $place->tag->name }}</td>  --}}
                 <td>{{ $place->created_at }}</td>
             </tr>
       @endforeach
