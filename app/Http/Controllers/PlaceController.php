@@ -11,8 +11,8 @@ class PlaceController extends Controller
         return view('place.top', ['places' => $places]);
     }
 
-    // public function show(){
-
-    //     return view('place.show', ['place' => $place]);
-    // }
+    public function show($id){
+        $place = Place::find($id);
+        return view('place.show', ['place' => $place]);
+    }
 }
