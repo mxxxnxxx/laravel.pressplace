@@ -16,11 +16,18 @@ use App\Http\Controllers\UserController;
 use vendor\laravel\framework\src\Illuminate\Routing;
 use Whoops\Run;
 
-Route::get('/place','PlaceController@index')->name('place.index');
+// place一覧
+Route::get('/places','PlaceController@index')->name('place.index');
+
+// 投稿フォーム用
+Route::get('/place/new', 'PlaceController@create')->name('place.new');
+Route::post('/place', 'PlaceController@store')->name('place.store');
+
+// place詳細ページ
 Route::get('/place/{id}', 'PlaceController@show')->name('place.show');
 
 Route::get('/', function () {
-    return redirect('/place');
+    return redirect('/places');
 });
 
 // メール認証していないと操作できないように指定
