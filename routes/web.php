@@ -17,6 +17,8 @@ use vendor\laravel\framework\src\Illuminate\Routing;
 use Whoops\Run;
 
 Route::get('/place','PlaceController@index')->name('place.index');
+Route::get('/place/{id}', 'PlaceController@show')->name('place.show');
+
 Route::get('/', function () {
     return redirect('/place');
 });
