@@ -25,7 +25,9 @@ class User extends Authenticatable implements MustVerifyEmailContract
      *
      * @var array
      */
-    protected $fillable = [
+    
+    
+     protected $fillable = [
         'name', 'email', 'password', 'user_image', 'introduction',
     ];
 
@@ -46,4 +48,9 @@ class User extends Authenticatable implements MustVerifyEmailContract
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+// userがplaceを所有する1対多
+    public function places()
+    {
+        return $this->hasMany('App\place');
+    }
 }
