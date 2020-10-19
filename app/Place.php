@@ -15,7 +15,9 @@ class Place extends Model
     protected $fillable = [
         'name',
         'comment',
-        'place_image',
+        'address',
+        'user_id'
+
     ];
 
 
@@ -24,4 +26,10 @@ class Place extends Model
         return $this->belongsTo('App\User');
     }
 
+    // place_imageがplaceに属する
+    public function place_images()
+    {
+        return $this->hasMany('App\Place_image');
+    }
+    
 }

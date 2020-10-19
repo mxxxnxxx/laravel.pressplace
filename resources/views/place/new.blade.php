@@ -14,7 +14,7 @@
     {{--  画像投稿  --}}
     <div class="form-group">
       {!! Form::label('file', '画像投稿', ['class' => 'control-label']) !!}
-      {!! Form::file('place_image',['multiple' => true]) !!}
+      {!! Form::file('place_image') !!}
     </div>
     {{--  コメント  --}}
     <div class="form-group m-0">

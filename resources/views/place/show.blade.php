@@ -7,16 +7,25 @@
     
     <table class="table table-striped table-hover">
       <tr>
-          <th>投稿者</th><th>写真</th><th>住所</th><th>コメント</th><th>tag</th><th>投稿日</th>
+          <th>投稿者</th>
+          <th>写真</th>
+          <th>住所</th>
+          <th>コメント</th>
+          {{--  <th>tag</th>  --}}
+          <th>投稿日</th>
       </tr>
             <tr>
                 <td>{{ $place->user->name }}</td>
-                <td>{{ $place->place_image }}</td>
+                <td>
+                @foreach ($place_images as $place_image)
+                  <img src="{{ asset('storage/place_image/' . $place_image->filename) }}" alt="place画像">
+                @endforeach
+                </td>
                 <td>{{ $place->address }}</td>
                 <td>{{ $place->comment }}</td>
-                <td>
+                {{--  <td>  --}}
                   {{--  {{ $place->tag->name }}  --}}
-                </td>
+                {{--  </td>  --}}
                 <td>{{ $place->created_at }}</td>
             </tr>
     </table>
