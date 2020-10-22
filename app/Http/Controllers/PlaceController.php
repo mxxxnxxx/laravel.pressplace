@@ -79,7 +79,8 @@ class PlaceController extends Controller
 
     // 一覧
     public function index(){
-        $places = Place::all();
+        $places = Place::paginate(15);
+
         // $place_images = $places->place_images;
         return view('place.top', ['places' => $places]);
     }

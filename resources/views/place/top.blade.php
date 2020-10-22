@@ -37,6 +37,9 @@
                 <td>{{ $place->created_at }}</td>
             </tr>
       @endforeach
-
+      
     </table>
+    {{--  ページネーション  --}}
+      {{ $places->links() }}
+
 @endsection
