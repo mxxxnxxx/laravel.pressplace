@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
-
+use App\Place;
+use App\Place_image;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 
@@ -14,9 +15,15 @@ class UserController extends Controller
     public function show(){
         // 以下でユーザー情報をにゅうしゅしている
         $user = Auth::user();
+        $places = Place::where('user_id', $user->id) //$userによる投稿を取得
+            ->orderBy('created_at', 'desc') // 投稿作成日が新しい順に並べる
+            ->paginate(15);
+        // $place_images = $places->place_images;
 
         // ユーザ情報を元にviewを表示 変数をviewに渡している
-        return view('user.show', [ 'user' => $user ]);
+        return view('user.show', [ 'user' => $user, 'places' => $places
+        // , 'place_images' => $place_images 
+        ]);
     }
     
     // ユーザー情報の編集を行う変数に編集したい自分の$idを渡す

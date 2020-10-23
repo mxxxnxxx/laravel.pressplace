@@ -61,25 +61,13 @@ class PlaceController extends Controller
 
 
     }
-    // // 画像処理用
-    // private function savePlaceImage($index, $i, $form){
-    //         // get instance
-    //         $img = \Image::make($i);
-    //         // resize
-    //         $img->fit(100, 100, function ($constraint) {
-    //             $constraint->upsize();
-    //         });
-    //         $file_name ="{$form->name}_{$index}.{$i->getClientOriginalExtension()}";
-    //         $save_path =  storage_path('app/public/place_image/' . $file_name);
-    //         $img->save($save_path);
-    //         return $file_name;
-    // }
-
+    public function update
 
 
     // 一覧
     public function index(){
-        $places = Place::paginate(15);
+        $places = Place::orderBy('created_at', 'desc')
+        ->paginate(15);
 
         // $place_images = $places->place_images;
         return view('place.top', ['places' => $places]);
