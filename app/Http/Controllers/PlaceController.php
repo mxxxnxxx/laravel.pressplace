@@ -50,18 +50,18 @@ class PlaceController extends Controller
                     $place->place_images()->create(['filename' => $file_name]);
                 
             }
-        
-        
-
-        
-        // $place_image->save();
 
         // 投稿結果の詳細ページにリダイレクト
         return redirect()->route('place.show', ['id' => $place->id]);
-
-
     }
-    public function update
+
+    public function edit(PlaceRequest $request){
+        return view('place.edit');
+    }
+
+    // public function update(PlaceRequest $request){
+
+    // }
 
 
     // 一覧
