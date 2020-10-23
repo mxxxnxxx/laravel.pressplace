@@ -25,9 +25,15 @@ Route::post('/place', 'PlaceController@store')->name('place.store');
 Route::get('/place/edit/{id}', 'PlaceController@edit')->name('place.edit');
 Route::post('/place/update/{id}', 'PlaceController@update')->name('place.update');
 
+
 // place詳細ページ
 Route::get('/place/{id}', 'PlaceController@show')->name('place.show');
 
+// placeソフトデリート
+Route::get('place/confirmation/{id} ', 'PlaceController@confirmationSoftdelete')->name('place.confirmationSoftdelete');
+Route::get('place/delete/{id} ', 'PlaceController@softdelete')->name('place.softdelete');
+
+// top
 Route::get('/', function () {
     return redirect('/places');
 });
@@ -37,8 +43,9 @@ Route::group(['middleware' => ['auth','verified']], function () {
     // フォームリクエストで$errorが使えるように記述
     Route::group(['middleware' => ['web']], function () {
         Route::resource('user', 'UserController');
-        Route::get('user/confirmation/{user} ', 'UserController@softdelete')->name('user.softdelete');
-        Route::get('user/delete/{user} ', 'UserController@confirmationSoftdelete')->name('user.confirmationSoftdelete');
+        Route::get('user/confirmation/{user} ', 'UserController@confirmationSoftdelete')->name('user.confirmationSoftdelete');
+        Route::get('user/delete/{user} ', 'UserController@softdelete')->name('user.softdelete');
+        
     });
 });
 

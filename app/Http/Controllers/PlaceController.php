@@ -105,4 +105,19 @@ class PlaceController extends Controller
         // $place_image = $place->place_images->filename;
         return view('place.show', ['place' => $place, 'place_images' => $place_images]);
     }
+
+    // ソフトデリート確認画面表示
+    public function confirmationSoftdelete($id)
+    {
+        $place = Place::find($id);
+        return view('place.confirmationSoftdelete', ['place' => $place]);
+    }
+
+    // ソフトデリート
+    public function softdelete($id)
+    {
+        $place = Place::find($id);
+        $place->delete();
+        return redirect()->to('/');
+    }
 }
