@@ -22,6 +22,8 @@ Route::get('/places','PlaceController@index')->name('place.index');
 // 投稿フォーム用
 Route::get('/place/new', 'PlaceController@create')->name('place.new');
 Route::post('/place', 'PlaceController@store')->name('place.store');
+Route::get('/place/edit', 'PlaceController@edit')->name('place.edit');
+Route::post('/place/update', 'PlaceController@update')->name('place.update');
 
 // place詳細ページ
 Route::get('/place/{id}', 'PlaceController@show')->name('place.show');
