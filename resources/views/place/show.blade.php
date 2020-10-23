@@ -4,7 +4,7 @@
 @include('layouts.footer')
 @section('content')
     <h1>{{ $place->name }}</h1>
-    
+    <a href={{ route('place.edit', ['id'=> $place->id]) }}>編集</a>
     <table class="table table-striped table-hover">
       <tr>
           <th>投稿者</th>

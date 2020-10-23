@@ -55,13 +55,39 @@ class PlaceController extends Controller
         return redirect()->route('place.show', ['id' => $place->id]);
     }
 
-    public function edit(PlaceRequest $request){
-        return view('place.edit');
+    public function edit($id){
+        $place = Place::find($id);
+        return view('place.edit', ['place' => $place]);
+        
+        
     }
 
-    // public function update(PlaceRequest $request){
+    public function update(PlaceRequest $request, $id){
+        $place = Place::find($id);
+        $place->name = $request->name;
+        $place->comment = $request->comment;
+        $place->address = $request->address;
+        $place->save();
+        $PlaceImages = $request->file('place_image');
 
-    // }
+        // 繰り返し
+        if (isset($PlaceImages)) {
+
+            // foreach ($PlaceImages as $index => $i) {
+            $img = \Image::make($PlaceImages);
+            // resize
+            $img->fit(100, 100, function ($constraint) {
+                $constraint->upsize();
+            });
+            $extension = $PlaceImages->getClientOriginalExtension();
+            $file_name = "{$request->name}_{$place->user_id}.{$extension}";
+            $save_path =  storage_path('app/public/place_image/' . $file_name);
+            $img->save($save_path);
+            $place->place_images()->create(['filename' => $file_name]);
+        }
+        // リダイレクトshow
+        return redirect()->route('place.show', ['id' => $place->id]);
+    }
 
 
     // 一覧

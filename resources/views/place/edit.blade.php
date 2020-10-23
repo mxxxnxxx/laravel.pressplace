@@ -3,13 +3,13 @@
 @include('layouts.header')
 @include('layouts.footer')
 @section('content')
-  <h1>みんなに場所をpressしてみよう！！</h1>
-  {!! Form::open(['route' => 'place.update', 'method' => 'post','files' => true]) !!}
+  <h1>place情報の編集</h1>
+  {!! Form::open(['route' => ['place.update', $place->id], 'method' => 'post','files' => true]) !!}
     {{Form::token()}}
     {{--  場所の名前  --}}
      <div class="form-group">
       {!! Form::label('text', '場所の名前', ['class' => 'control-label']) !!}
-      {!! Form::text('name', old('name'), ['class' => 'form-control']) !!}
+      {!! Form::text('name', old('name',$place->name), ['class' => 'form-control']) !!}
     </div>
     {{--  画像投稿  --}}
     <div class="form-group">
@@ -19,12 +19,12 @@
     {{--  コメント  --}}
     <div class="form-group m-0">
       {!! Form::label('textarea', 'コメント', ['class' => 'control-label']) !!}
-      {!! Form::textarea('comment', old('comment'), ['class' => 'form-control']) !!}
+      {!! Form::textarea('comment', old('comment',$place->comment), ['class' => 'form-control']) !!}
     </div>
     {{--  住所  --}}
     <div class="form-group m-0">
       {!! Form::label('text', '住所', ['class' => 'control-label']) !!}
-      {!! Form::text('address', old('address'), ['class' => 'form-control']) !!}
+      {!! Form::text('address', old('address',$place->address), ['class' => 'form-control']) !!}
     </div>
 
     {{--  tag  --}}
