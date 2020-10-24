@@ -4,8 +4,13 @@
 @include('layouts.footer')
 @section('content')
     <h1>{{ $place->name }}</h1>
-    <a href={{ route('place.edit', ['id'=> $place->id]) }}>編集</a>
-    <a href={{ route('place.confirmationSoftdelete', ['id'=> $place->id]) }}>消去</a>
+    {{--  ログインしていてかつそのuserと1対多になっている情報のみ操作可能  --}}
+    @auth
+      @if ($place->user_id === $login_user_id)
+        <a href={{ route('place.edit', ['id'=> $place->id]) }}>編集</a>
+        <a href={{ route('place.confirmationSoftdelete', ['id'=> $place->id]) }}>消去</a>    
+      @endif
+    @endauth
     <table class="table table-striped table-hover">
       <tr>
           <th>投稿者</th>
