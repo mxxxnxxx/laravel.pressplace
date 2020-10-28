@@ -19,6 +19,11 @@ class Place extends Model
         'user_id'
 
     ];
+    // place_tagのリレーション
+    public function tags()
+    {
+        return $this->belongsToMany('App\Tag');
+    }
 
 
 // placeがuserに属す
