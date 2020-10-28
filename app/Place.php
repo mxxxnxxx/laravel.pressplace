@@ -31,5 +31,10 @@ class Place extends Model
     {
         return $this->hasMany('App\Place_image');
     }
+    // place + tag 多対多
+    public function tags()
+    {
+        return $this->belongsToMany('App\Tag');
+    }
     
 }

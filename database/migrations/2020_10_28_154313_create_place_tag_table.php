@@ -14,8 +14,11 @@ class CreatePlaceTagTable extends Migration
     public function up()
     {
         Schema::create('place_tag', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->timestamps();
+            $table->bigInteger('place_id')->unsigned();
+            $table->bigInteger('tag_id')->unsigned();
+            $table->primary(['place_id', 'tag_id']);
+            $table->foreign('place_id')->references('id')->on('places')->onDelete('cascade');
+            $table->foreign('tag_id')->references('id')->on('tags')->onDelete('cascade');
         });
     }
 
