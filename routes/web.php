@@ -12,7 +12,7 @@
 */
 
 use App\Http\Controllers\UserController;
-use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\Route;
 // use Illuminate\Routing\Route;
 use vendor\laravel\framework\src\Illuminate\Routing;
 use Whoops\Run;
@@ -34,8 +34,8 @@ Route::get('/', function () {
 });
 
 // 検索機能
-Route::get('/place/serch', 'PlaceController@serch')->name('serch');
-Route::get('/place/serched', 'PlaceController@serched')->name('serched');
+Route::get('place/serch', 'PlaceController@serch')->name('serch');
+Route::get('place/serched', 'PlaceController@serched')->name('serched');
 
 // メール認証していないと操作できないように指定
 Route::group(['middleware' => ['auth','verified']], function () {
