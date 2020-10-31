@@ -34,8 +34,8 @@ Route::get('/', function () {
 });
 
 // 検索機能
-Route::get('/place/serch', 'PlaceController@serch')->name('place.serch');
-Route::get('/place/serch', 'PlaceController@serched')->name('place.serched');
+Route::get('/place/serch', 'PlaceController@serch')->name('serch');
+Route::get('/place/serched', 'PlaceController@serched')->name('serched');
 
 // メール認証していないと操作できないように指定
 Route::group(['middleware' => ['auth','verified']], function () {
