@@ -30,7 +30,7 @@
     {{--  tag  --}}
      <div class="form-group m-0">
       {!! Form::label('textarea', 'tag', ['class' => 'control-label']) !!}
-      {!! Form::textarea('tags',old('tags'),['class' => 'form-control']) !!}
+      {!! Form::textarea('tags',old('tags',$place->tags),['class' => 'form-control']) !!}
     </div>
 
     {{--  投稿ボタン  --}}

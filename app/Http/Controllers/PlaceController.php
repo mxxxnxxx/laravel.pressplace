@@ -89,7 +89,10 @@ class PlaceController extends Controller
 
     public function edit($id){
         $place = Place::find($id);
-        return view('place.edit', ['place' => $place]);
+        // $tags = $place->tags->name;
+        return view('place.edit', ['place' => $place
+        // , 'tags' => $tags
+        ]);
         
         
     }
@@ -196,7 +199,7 @@ class PlaceController extends Controller
     }
 
     public function serched(Request $request){
-        
+
         return view('searched');
     }
 }

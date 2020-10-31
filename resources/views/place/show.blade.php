@@ -17,7 +17,7 @@
           <th>写真</th>
           <th>住所</th>
           <th>コメント</th>
-          {{--  <th>tag</th>  --}}
+           <th>tag</th> 
           <th>投稿日</th>
       </tr>
             <tr>
@@ -29,9 +29,11 @@
                 </td>
                 <td>{{ $place->address }}</td>
                 <td>{{ $place->comment }}</td>
-                {{--  <td>  --}}
-                  {{--  {{ $place->tag->name }}  --}}
-                {{--  </td>  --}}
+                <td>
+                @foreach($place->tags as $tag)
+                  {{ $tag->name }} 
+                @endforeach
+                </td>
                 <td>{{ $place->created_at }}</td>
             </tr>
     </table>
