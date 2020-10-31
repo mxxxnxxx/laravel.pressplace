@@ -3,7 +3,7 @@
 @include('layouts.header')
 @include('layouts.footer')
 @section('content')
-    <h1>みんなに場所をpress!!</h1>
+    <h1>！！検索結果！！</h1>
     <h2>みんなの場所にも行ってみよう!!</h2>
     @include('layouts.place_list')
 @endsection

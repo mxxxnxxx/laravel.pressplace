@@ -12,6 +12,7 @@
 */
 
 use App\Http\Controllers\UserController;
+use Illuminate\Routing\Route;
 // use Illuminate\Routing\Route;
 use vendor\laravel\framework\src\Illuminate\Routing;
 use Whoops\Run;
@@ -31,6 +32,10 @@ Route::get('place/delete/{id} ', 'PlaceController@softdelete')->name('place.soft
 Route::get('/', function () {
     return redirect('/places');
 });
+
+// 検索機能
+Route::get('/place/serch', 'PlaceController@serch')->name('place.serch');
+Route::get('/place/serch', 'PlaceController@serched')->name('place.serched');
 
 // メール認証していないと操作できないように指定
 Route::group(['middleware' => ['auth','verified']], function () {
