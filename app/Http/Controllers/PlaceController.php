@@ -190,4 +190,13 @@ class PlaceController extends Controller
         $place->delete();
         return redirect()->to('/');
     }
+
+    public function serch(){
+        return view('search');
+    }
+
+    public function serched(Request $request){
+        
+        return view('searched');
+    }
 }
