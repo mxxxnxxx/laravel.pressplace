@@ -8,6 +8,9 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     PressPlace
                 </a>
+                <a href={{ route('serch') }}>検索</a>
+
+
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -23,7 +26,7 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
-                        {{--  ログインしていない時  --}}
+                        {{--  ログインしていない時のみ --}}
                         @guest
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
