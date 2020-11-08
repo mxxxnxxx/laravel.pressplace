@@ -168,7 +168,7 @@ class PlaceController extends Controller
     // 詳細ページ
     public function show($id){
         $place = Place::find($id);
-        $place_images = $place->place_images;
+        
         $user = \Auth::user();
             if ($user) {
                 $login_user_id = $user->id;
@@ -176,7 +176,7 @@ class PlaceController extends Controller
                 $login_user_id = "";
             }
         // $place_image = $place->place_images->filename;
-        return view('place.show', ['place' => $place, 'place_images' => $place_images, 'login_user_id' => $login_user_id]);
+        return view('place.show', ['place' => $place,  'login_user_id' => $login_user_id]);
     }
 
     // ソフトデリート確認画面表示
@@ -195,11 +195,41 @@ class PlaceController extends Controller
     }
 
     public function serch(){
-        return view('search');
+        return view('serch');
     }
 
     public function serched(Request $request){
+        // 検索条件の値を取得
+        $s_tag = $request->input('tag');
+        $s_name = $request->input('name');
+        $s_comment = $request->input(('comment'));
 
-        return view('searched');
+        // データベースから検索
+
+        // tagの検索
+        if(!empty($s_tag)){
+            $places_q = Place::whereHas('tags', function ($query) use ($s_tag, $s_name, $s_comment) {
+            $query->where('name', 'like', '%' . $s_tag . '%');
+            });
+        }else{
+            $places_q = Place::query();
+        }
+
+        if(!empty($s_name)){
+            $places_q->where('name', 'like', '%' . $s_name . '%');
+        }
+
+        if (!empty($s_comment)) {
+            $places_q->where('name', 'like', '%' . $s_comment . '%');
+        }
+
+
+
+        $places = $places_q
+        ->orderBy('created_at', 'desc')
+        ->paginate(15);
+        
+
+        return view('serched',['places' => $places ]);
     }
 }

@@ -6,7 +6,7 @@
           <th>name</th>
           <th>住所</th>
           <th>コメント</th>
-           <th>tag</th> 
+          <th>tag</th>
           <th>投稿日</th>
       </tr>
       @foreach ($places as $place)
@@ -17,7 +17,6 @@
                   <img src="{{ asset('storage/place_image/' . $place_image->filename) }}" alt="place画像">
                 @endforeach
                 </td>
-                
                 <td>
                   <a href={{ route('place.show', ['id' =>  $place->id]) }}>
                     {{ $place->name }}
@@ -25,11 +24,11 @@
                 </td>
                 <td>{{ $place->address }}</td>
                 <td>{{ $place->comment }}</td>
-                 <td> 
+                <td>
                     @foreach($place->tags as $tag)
-                      {{ $tag->name }} 
+                      {{ $tag->name }}
                     @endforeach
-                 </td> 
+                </td>
                 <td>{{ $place->created_at }}</td>
             </tr>
       @endforeach

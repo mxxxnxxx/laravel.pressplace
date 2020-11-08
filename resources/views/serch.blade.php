@@ -4,7 +4,7 @@
 @include('layouts.header')
 @include('layouts.footer')
 @section('content')
-{!! Form::open(['method' => 'get']) !!}
+{!! Form::open(['route' => 'serched','method' => 'get']) !!}
   @csrf
     <div class='form-group'>
         {!! Form::label('tag', 'タグ:検索') !!}
@@ -20,7 +20,7 @@
     </div>
     <div class='form-group'>
         {!! Form::submit('検索', ['class' => 'btn btn-outline-primary'])!!}
-        <a href={{ route('') }>クリア</a>
+        
     </div>
 {!! Form::close() !!}
 @endsection

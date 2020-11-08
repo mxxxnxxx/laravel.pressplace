@@ -23,7 +23,7 @@
             <tr>
                 <td>{{ $place->user->name }}</td>
                 <td>
-                @foreach ($place_images as $place_image)
+                @foreach ($place->place_images as $place_image)
                   <img src="{{ asset('storage/place_image/' . $place_image->filename) }}" alt="place画像">
                 @endforeach
                 </td>
