@@ -11,7 +11,9 @@
       </tr>
       @foreach ($places as $place)
             <tr>
-                <td>{{ $place->user->name }}</td>
+                <td>
+                  <a href={{ route('user.show', ['user' => $place->user->id ]) }}>{{ $place->user->name }}</a>
+                </td>
                 <td>
                 @foreach ($place->place_images as $place_image)
                   <img src="{{ asset('storage/place_image/' . $place_image->filename) }}" alt="place画像">

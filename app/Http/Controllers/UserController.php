@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use App\Place;
+use App\User;
 use App\Place_image;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
@@ -12,18 +13,25 @@ class UserController extends Controller
 {
 
     //ユーザーページ表示を行う記述
-    public function show(){
+    public function show(User $user){
         // 以下でユーザー情報をにゅうしゅしている
-        $user = Auth::user();
+        $user = User::find($user->id);
         $places = Place::where('user_id', $user->id) //$userによる投稿を取得
             ->orderBy('created_at', 'desc') // 投稿作成日が新しい順に並べる
             ->paginate(15);
         // $place_images = $places->place_images;
 
+        // ログインしているユーザーの情報を取得し編集ボタンの表示有無を変更
+        $user_in = \Auth::user();
+        if ($user_in) {
+            $login_user_id = $user_in->id;
+        } else {
+            $login_user_id = "";
+        }
+
+
         // ユーザ情報を元にviewを表示 変数をviewに渡している
-        return view('user.show', [ 'user' => $user, 'places' => $places
-        // , 'place_images' => $place_images 
-        ]);
+        return view('user.show', [ 'user' => $user, 'places' => $places, 'login_user_id' => $login_user_id ]);
     }
     
     // ユーザー情報の編集を行う変数に編集したい自分の$idを渡す

@@ -7,8 +7,12 @@
 
 @section('content')
     <div class="container">
-
-      <a href={{ route('user.edit',['user' => Auth::user()->id]) }} class="profile_editing">プロフィール編集</a>
+      @auth
+        @if ($user->id === $login_user_id)
+          <a href={{ route('user.edit',['user' => Auth::user()->id]) }} class="profile_editing">プロフィール編集</a>        
+        @endif
+      @endauth
+      
       
       <h1 class="user_name">{{ $user->name }}</h1>
     
@@ -27,10 +31,14 @@
         @if (!empty($user->introduction))
           <div class="user_introduction_in">{{ Auth::user()->introduction }}</div>
         @else
-          <a href={{ route('user.edit',['user' => Auth::user()->id]) }}>自己紹介を書く</a>
+          @auth
+            @if ($user->id === $login_user_id)
+              <a href={{ route('user.edit',['user' => Auth::user()->id]) }}>自己紹介を書く</a>    
+            @endif
+          @endauth
         @endif
       </div>
-      
+
         @include('layouts.place_list')
     </div>
 
