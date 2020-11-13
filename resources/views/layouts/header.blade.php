@@ -8,6 +8,8 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     PressPlace
                 </a>
+
+                <div id="app"></div>
                 <a href={{ route('serch') }}>検索</a>
 
 
