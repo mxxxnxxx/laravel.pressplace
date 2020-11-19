@@ -2,14 +2,13 @@
 @section('header')
 <header>
     
-    <div id="app">
+    <div id="header">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     PressPlace
                 </a>
 
-                <div id="app"></div>
                 <a href={{ route('serch') }}>検索</a>
 
 
