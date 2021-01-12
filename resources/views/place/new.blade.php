@@ -13,10 +13,10 @@
       {!! Form::text('name', old('name'), ['class' => 'form-control']) !!}
     </div>
     {{--  画像投稿  --}}
-    <div class="form-group">
+    {{--  <div class="form-group">
       {!! Form::label('file', '画像投稿', ['class' => 'control-label']) !!}
       {!! Form::file('place_image') !!}
-    </div>
+    </div>  --}}
     {{--  コメント  --}}
     <div class="form-group m-0">
       {!! Form::label('textarea', 'コメント', ['class' => 'control-label']) !!}

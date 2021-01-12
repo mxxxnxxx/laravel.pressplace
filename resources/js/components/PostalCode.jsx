@@ -19,7 +19,7 @@ const PostalCode = () => {
       // dbへのurlを定義
       // フォーム上のfirst_codeとlast_codeを取得してurlとして定数を定義
       // /ajax/postal_search?がパスパラメータでそれ以降が検索に使う郵便番号のクエリパラメーター
-    const url = '/ajax/postal_search?' + [
+    let url = '/ajax/postal_search?' + [
       'first_code=' + firstCodeValue.value,
       'last_code=' + lastCodeValue.value
     ].join('&'); // .join('&')でandのクエリーをしている

@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import ImageUp from "./ImageUp";
 import PostalCode from "./PostalCode";
 
 
@@ -8,9 +9,8 @@ function App() {
     return (
         <Router>
             <div>
-                <Switch>
                     <Route path="/place/new" component={PostalCode} />
-                </Switch>
+                    <Route path="/place/new" component={ImageUp} />
             </div>
         </Router>
     );
