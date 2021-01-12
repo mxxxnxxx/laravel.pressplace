@@ -8,7 +8,7 @@ class PostalCode extends Model
 {
     public $timestamps = false;
     protected $guarded = ['id'];
-    // スコープ
+    // 郵便番号からデータベースの住所を検索する
     public function scopeWhereSearch($query, $first_code, $last_code)
     {
 

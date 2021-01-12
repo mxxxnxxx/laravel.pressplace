@@ -4,6 +4,7 @@
 @include('layouts.footer')
 @section('content')
   <h1>みんなに場所をpressしてみよう！！</h1>
+    
   {!! Form::open(['route' => 'place.store', 'method' => 'post','files' => true]) !!}
     {{Form::token()}}
     {{--  場所の名前  --}}
@@ -21,16 +22,18 @@
       {!! Form::label('textarea', 'コメント', ['class' => 'control-label']) !!}
       {!! Form::textarea('comment', old('comment'), ['class' => 'form-control']) !!}
     </div>
-    {{--  郵便番号  --}}
-    <div class="form-group m-0">
-      {!! Form::label('textarea', '郵便番号', ['class' => 'control-label']) !!}
-      {!! Form::text('postal_code', old('postal_code'), ['class' => 'form-control']) !!}
+    
+    <div id="react">
+      {{--  郵便番号  --}}react
+      {{--  {!! Form::label('textarea', '郵便番号', ['class' => 'control-label']) !!}
+      {!! Form::text('postal_code', old('postal_code'), ['class' => 'form-control']) !!}  --}}
     </div>
-    {{--  住所  --}}
-    <div class="form-group m-0">
-      {!! Form::label('text', '住所', ['class' => 'control-label']) !!}
-      {!! Form::text('address', old('address'), ['class' => 'form-control']) !!}
-    </div>
+      {{--  住所  --}}
+    {{--  <div class="form-group m-0">
+        {!! Form::label('text', '住所', ['class' => 'control-label']) !!}
+        {!! Form::text('address', old('address'), ['class' => 'form-control']) !!}
+    </div>  --}}
+
     {{--  tag  --}}
     <div class="form-group m-0">
       {!! Form::label('textarea', 'tag', ['class' => 'control-label']) !!}

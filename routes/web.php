@@ -50,6 +50,8 @@ Route::group(['middleware' => ['auth','verified']], function () {
         Route::post('/place', 'PlaceController@store')->name('place.store');
         Route::get('/place/edit/{id}', 'PlaceController@edit')->name('place.edit');
         Route::post('/place/update/{id}', 'PlaceController@update')->name('place.update');
+        // ajaxのapiのためのルーティング
+        Route::get('ajax/postal_search', 'PlaceController@postal_search')->name('postal_search');
     });
 
     

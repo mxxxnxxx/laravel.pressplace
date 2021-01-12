@@ -16,6 +16,15 @@ class PlaceController extends Controller
     public function create(){
         return view('place.new');
     }
+
+    // 郵便番号検索
+    public function postal_search(Request $request) {
+
+// 順番でfirst_code,last_codeをそれぞれ$last_code , $first_codeとしてわたしている
+    return \App\PostalCode::whereSearch($request->first_code, $request->last_code)->first();
+
+    }
+
     // データベースへ保存
     public function store( PlaceRequest $request){
         $place = Place::create(
