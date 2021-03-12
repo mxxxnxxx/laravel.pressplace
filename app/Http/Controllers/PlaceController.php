@@ -40,6 +40,7 @@ class PlaceController extends Controller
         // $place->comment = $request->comment;
         // $place->address = $request->address;
         // $place->save();
+        
 
         // 画像の処理
         $PlaceImages = $request->file('place_image');
@@ -69,9 +70,11 @@ class PlaceController extends Controller
 
         // $matchの中でも#が付いていない方を使用する(配列番号で言うと1)
         foreach ($match[1] as $tag) {
-            // firstOrCreateで重複を防ぎながらタグを作成している。
+            // firstOrCreateでTagモデルからDBにアクセスし重複を防ぎながらタグを作成している。
+            // 作ったあとの情報を$recodeで変数として取得している
+            
             $record = Tag::firstOrCreate(['name' => $tag]);
-            // 受け皿に入れる
+            // 作成された$recodeを受け皿に入れる
             array_push($tags, $record);
         }
 

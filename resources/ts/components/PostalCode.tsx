@@ -1,8 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+interface PostalCodeProps {
+  name: string;
+  address: string;
+  setAddress: any;
+}
 
-const PostalCode = () => {
+const PostalCode: React.FC<PostalCodeProps> = ({
+  name,
+  address,
+  setAddress
+}: PostalCodeProps): React.ReactElement => {
+
+  
   // hooksのstateを定義
   const [firstCodeCount, setFirstCodeCount] = useState({count: 0});
   const [firstCodeValue, setFirstCodeValue] = useState({value: ''});
@@ -30,45 +41,52 @@ const PostalCode = () => {
     // もしNaNでなければ
     if (addressValue) {
             // formに住所を反映
-      document.getElementById("address").value = addressValue;
+      const elm = document.getElementById('address') as HTMLInputElement;
+      setAddress(addressValue);
+      return elm.value = address;
+      
     }
 
   };
 
-  // jsxのhtml部分
+
+  
+  // tsxのhtml部分
   return (
     <>
       <div className="form-group m-0">
         <label htmlFor="first_code" className="control-label">郵便番号</label>
           <input
           name="first_code"
-          size="3"
-          maxLength="3"
+          size={3}
+          maxLength={3}
             // 以下でvalueに変化が会った時にイベントが発生する
             // setPostalCodeの引数にpostalCodeのfirstCode: e.target.valueをしていしてjsonに値を入れている
-          onKeyUp={(e) => { setFirstCodeCount({ count: e.target.value.length }) }}
-          onChange={(e) => { setFirstCodeValue({ value: e.target.value }) }}
+          onKeyUp={(e):void => { setFirstCodeCount({ count: e.currentTarget.value.length }) }}
+          onChange={(e):void => { setFirstCodeValue({ value: e.currentTarget.value }) }}
           />
         -
           <input
           name="last_code"
-          size="4"
-          maxLength="4"
+          size={4}
+          maxLength={4}
             // 以下でvalueに変化が会った時にイベントが発生する
-          onKeyUp={(e) => { setLastCodeCount({ count: e.target.value.length }) }}
-          onChange={(e) => { setLastCodeValue({ value: e.target.value }) }}
+          onKeyUp={(e):void => { setLastCodeCount({ count: e.currentTarget.value.length }) }}
+          onChange={(e):void => { setLastCodeValue({ value: e.currentTarget.value }) }}
           />
       </div>
 
       <div className="form-group m-0">
-        <label htmlFor="address" className="control-label" >住所</label>
+        <label htmlFor={name} className="control-label" >住所</label>
           <input
-          name="address"
+          name={name}
           id="address"
           className="form-control"
-          cols="20"
-          rows="1"
-          />
+          type="text"
+          size={20}
+        />
+        
+        
       </div>
     </>
   )
