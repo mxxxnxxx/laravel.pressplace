@@ -26,7 +26,7 @@ class PlaceRequest extends FormRequest
         return [
             'name' => 'required',
             'comment' => 'string|max:200',
-            // 'place_image' => 'image|mimes:jpeg,png,jpg|max:2048'
+            'place_image' => 'image|mimes:jpeg,png,jpg|max:15480'
         ];
     }
 
@@ -35,7 +35,7 @@ class PlaceRequest extends FormRequest
             "string" =>"文字以外のものが入力されています。",
             "image" => "指定されたファイルが画像ではありません。",
             "mines" => "指定された拡張子（PNG/JPG）ではありません。",
-            // "max" => "2Ｍを超えています。",
+            "max" => "15Ｍを超えています。",
         ];
     }
 
