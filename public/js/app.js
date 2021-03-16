@@ -81748,6 +81748,7 @@ const PlaceForm = () => {
         compressedPhotoData.forEach((photoData) => {
             formData.append("place_image", photoData.blob, photoData.name);
         });
+        console.log(...formData.entries());
         // axiosの記述方法 postメソッドを使わないやり方で記述
         axios_1.default({
             // php側のstoreメソッドのルートのurl
@@ -81764,6 +81765,7 @@ const PlaceForm = () => {
         })
             .catch((error) => {
             alert("エラーが発生しました。");
+            console.log(error);
         });
     });
     // スタイル
