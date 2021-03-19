@@ -81740,14 +81740,19 @@ const PlaceForm = () => {
         // 一枚一枚の順番を変えないため改めてasyncで処理をハンドリング
         photos.map((photo) => __awaiter(void 0, void 0, void 0, function* () {
             return {
-                blob: yield browser_image_compression_1.default(photo, compressOptions),
-                name: photo.name,
+                blob: yield browser_image_compression_1.default(photo, compressOptions)
+                // name: photo.name,
             };
         })));
+        // console.log(compressedPhotoData);
+        for (let i = 0; i < compressedPhotoData.length; i++) {
+            formData.append("place_image_" + i, compressedPhotoData[i].blob);
+        }
+        // 以下 一枚の写真しか送れなかったもの
         // forEachで圧縮した写真データphotoDataとして渡し一つずつformDataに入れる
-        compressedPhotoData.forEach((photoData) => {
-            formData.append("place_image", photoData.blob, photoData.name);
-        });
+        // compressedPhotoData.forEach((photoData) => {
+        //   formData.append("place_image", photoData.blob, photoData.name);
+        // });
         console.log(...formData.entries());
         // axiosの記述方法 postメソッドを使わないやり方で記述
         axios_1.default({
@@ -81762,10 +81767,10 @@ const PlaceForm = () => {
         })
             .then((response) => {
             alert("送信しました");
+            console.log(...formData.keys());
         })
             .catch((error) => {
             alert("エラーが発生しました。");
-            console.log(error);
         });
     });
     // スタイル

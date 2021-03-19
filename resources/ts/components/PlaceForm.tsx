@@ -10,7 +10,7 @@ import {makeStyles,createStyles} from "@material-ui/core/styles"
 interface Inputs {
   name: string;
   comment: string;
-  address: string
+  address: string;
   tags: string;
 };
 
@@ -57,15 +57,26 @@ const PlaceForm: React.FC = () => {
       // 一枚一枚の順番を変えないため改めてasyncで処理をハンドリング
       photos.map(async (photo) => {
         return {
-          blob: await imageCompression(photo, compressOptions),
-          name: photo.name,
+          blob: await imageCompression(photo, compressOptions)
+          // name: photo.name,
         };
       })
     );
+    // console.log(compressedPhotoData);
+    
+    for (let i = 0; i < compressedPhotoData.length; i++){
+      formData.append("place_image_" + i, compressedPhotoData[i].blob,
+        // compressedPhotoData.name
+      );
+
+     }
+
+
+    // 以下 一枚の写真しか送れなかったもの
     // forEachで圧縮した写真データphotoDataとして渡し一つずつformDataに入れる
-    compressedPhotoData.forEach((photoData) => {
-      formData.append("place_image", photoData.blob, photoData.name);
-    });
+    // compressedPhotoData.forEach((photoData) => {
+    //   formData.append("place_image", photoData.blob, photoData.name);
+    // });
     console.log(...formData.entries());
 // axiosの記述方法 postメソッドを使わないやり方で記述
     axios({
@@ -80,11 +91,11 @@ const PlaceForm: React.FC = () => {
     })
       .then((response) => {
         alert("送信しました");
-        
+        console.log(...formData.keys())
       })
       .catch((error) => {
         alert("エラーが発生しました。");
-        console.log(error)
+        
       });
   };
 // スタイル

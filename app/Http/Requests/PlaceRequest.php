@@ -26,7 +26,7 @@ class PlaceRequest extends FormRequest
         return [
             'name' => 'required',
             'comment' => 'string|max:200',
-            'place_image' => 'image|mimes:jpeg,png,jpg|max:15480'
+            // 'files.*.photo' => 'image|mimes:jpeg,bmp,png|max:15480'
         ];
     }
 

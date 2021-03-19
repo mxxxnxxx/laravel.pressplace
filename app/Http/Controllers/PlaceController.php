@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PlaceRequest;
 use App\Place;
+use App\Place_image;
 use App\Tag;
 // 以下いらない？
 // use App\Place_image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use SebastianBergmann\Environment\Console;
 
 class PlaceController extends Controller
 {
@@ -26,7 +28,7 @@ class PlaceController extends Controller
     }
 
     // データベースへ保存
-    public function store( PlaceRequest $request){
+    public function store(PlaceRequest $request){
         $place = Place::create(
             [
                 'user_id' => Auth::id(),
@@ -34,33 +36,33 @@ class PlaceController extends Controller
                 'comment' => $request->comment,
                 'address' => $request->address
                 ]);
-        // $place_image = new Place_image;
-        // $place->user_id = Auth::id();
-        // $place->name = $request->name;
-        // $place->comment = $request->comment;
-        // $place->address = $request->address;
-        // $place->save();
         
-
         // 画像の処理
-        $PlaceImages = $request->file('place_image');
+        // Place_imageといおう文字を含むkeyをもったプロパティーを変数にしたい
+        
+        if($request->place_image_0){
+            $PlaceImages = [];
+            for($i=0; $i<3; $i++){
+                $place_image = "place_image_{$i}";
+                array_push($PlaceImages, $request->$place_image);
+            };
 
-        // 繰り返し
-            if(isset($PlaceImages)){
+            \Debugbar::info($PlaceImages);
 
-                // foreach ($PlaceImages as $index => $i) {
-                    $img = \Image::make($PlaceImages);
+                // 繰り返し
+            foreach ($PlaceImages as $index => $im) {
+                $img = \Image::make($im);
                     // resize
-                    $img->fit(100, 100, function ($constraint) {
-                        $constraint->upsize();
-                    });
-                    $extension = $PlaceImages->getClientOriginalExtension();
-                    $file_name = "{$request->name}_{$place->user_id}.{$extension}";
-                    $save_path =  storage_path('app/public/place_image/' . $file_name);
-                    $img->save($save_path);
-                    $place->place_images()->create(['filename' => $file_name]);
-                
+                $img->fit(100, 100, function ($constraint) {
+                    $constraint->upsize();
+                });
+                $extension = $im->getClientOriginalExtension();
+                $file_name = "{$request->name}_{$place->user_id}_{$index}.{$extension}";
+                $save_path =  storage_path('app/public/place_image/' . $file_name);
+                $img->save($save_path);
+                $place->place_images()->create(['filename' => $file_name]);
             }
+        }
         // tagの処理
         // preg_match_allを使用して#タグのついた文字列を取得している多次元配列
         preg_match_all('/#([a-zA-z0-9０-９ぁ-んァ-ヶ亜-熙]+)/u', $request->tags, $match);
