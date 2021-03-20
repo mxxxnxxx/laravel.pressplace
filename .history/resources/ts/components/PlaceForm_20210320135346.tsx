@@ -93,8 +93,7 @@ const PlaceForm: React.FC = () => {
     })
       .then(() => {
         // ここにモーダルコンポーネント
-        return setShow(true);
-        
+        setShow(true);
       })
       .catch(() => {
         alert("エラーが発生しました。");

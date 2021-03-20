@@ -45,8 +45,7 @@ class PlaceController extends Controller
                 $place_image = "place_image_{$i}";
                 array_push($PlaceImages, $request->$place_image);
             };
-                
-            // 繰り返し
+                // 繰り返し
             foreach ($PlaceImages as $index => $im) {
                 $img = \Image::make($im);
                     // resize

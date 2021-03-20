@@ -24,7 +24,7 @@ class PlaceRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
+            'name' => 'required|string|max:30',
             'comment' => 'string|max:200',
             // 'files.*.photo' => 'image|mimes:jpeg,bmp,png|max:15480'
         ];

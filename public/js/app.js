@@ -81520,9 +81520,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-// import { type } from 'os';
 const react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
-// import PhotoSample from "../PhotoSample";
 const styles_1 = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/index.js");
 // ここからreactのいつものコンポーネント
 // 定めたPhotosUploadPropsでかたのしていもおこなっている
@@ -81614,20 +81612,20 @@ const ImageUp = ({ name, componentRef, photos, setPhotos, }) => {
         "plus": {},
         "input": {}
     }));
-    const classes = useStyles();
+    const stylePhot = useStyles();
     return (react_1.default.createElement(react_1.default.Fragment, null,
-        react_1.default.createElement("div", { className: classes.topContainer }, [...Array(3)].map((_, index) => index < photos.length ? (react_1.default.createElement("button", { type: "button", className: classes.imageContainer, key: index, onClick: () => handleCancel(index) },
-            react_1.default.createElement("img", { className: classes.image, src: URL.createObjectURL(photos[index]), alt: `あなたの写真 ${index + 1}` }))) : (react_1.default.createElement("label", { htmlFor: name, key: index })))),
+        react_1.default.createElement("div", { className: stylePhot.topContainer }, [...Array(3)].map((_, index) => index < photos.length ? (react_1.default.createElement("button", { type: "button", className: stylePhot.imageContainer, key: index, onClick: () => handleCancel(index) },
+            react_1.default.createElement("img", { className: stylePhot.image, src: URL.createObjectURL(photos[index]), alt: `あなたの写真 ${index + 1}` }))) : (react_1.default.createElement("label", { htmlFor: name, key: index })))),
         isSameError && (react_1.default.createElement("p", null, "\u203B\u65E2\u306B\u9078\u629E\u3055\u308C\u305F\u753B\u50CF\u3068\u540C\u3058\u3082\u306E\u306F\u8868\u793A\u3055\u308C\u307E\u305B\u3093")),
         isNumberError && (react_1.default.createElement("p", null, "\u203B3\u679A\u3092\u8D85\u3048\u3066\u9078\u629E\u3055\u308C\u305F\u753B\u50CF\u306F\u8868\u793A\u3055\u308C\u307E\u305B\u3093")),
         isFileTypeError && (react_1.default.createElement("p", null, "\u203Bjpeg, png, bmp, gif, svg\u4EE5\u5916\u306E\u30D5\u30A1\u30A4\u30EB\u5F62\u5F0F\u306F\u8868\u793A\u3055\u308C\u307E\u305B\u3093")),
-        react_1.default.createElement("div", { className: classes.bottomContainer },
+        react_1.default.createElement("div", { className: stylePhot.bottomContainer },
             react_1.default.createElement("div", null,
-                react_1.default.createElement("p", { className: classes.note }, "\u203B\u6700\u59273\u679A\u307E\u3067")),
-            react_1.default.createElement("label", { className: classes.label, htmlFor: name },
-                react_1.default.createElement("div", { className: classes.plus }),
+                react_1.default.createElement("p", { className: stylePhot.note }, "\u203B\u6700\u59273\u679A\u307E\u3067")),
+            react_1.default.createElement("label", { className: stylePhot.label, htmlFor: name },
+                react_1.default.createElement("div", { className: stylePhot.plus }),
                 "\u5199\u771F\u3092\u8FFD\u52A0",
-                react_1.default.createElement("input", { className: classes.input, type: "file", name: name, id: name, ref: componentRef, accept: "image/*", onChange: handleFile, multiple: true })))));
+                react_1.default.createElement("input", { className: stylePhot.input, type: "file", name: name, id: name, ref: componentRef, accept: "image/*", onChange: handleFile, multiple: true })))));
 };
 //         // 以下俺のオリジナル
 //     const { register, handleSubmit, watch, errors } = useForm();
@@ -81650,6 +81648,46 @@ const ImageUp = ({ name, componentRef, photos, setPhotos, }) => {
 //     )
 // }
 exports.default = ImageUp;
+
+
+/***/ }),
+
+/***/ "./resources/ts/components/NewModal.tsx":
+/*!**********************************************!*\
+  !*** ./resources/ts/components/NewModal.tsx ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+const styles_1 = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/index.js");
+const NewModal = ({ show }) => {
+    const useStyles = styles_1.makeStyles(() => styles_1.createStyles({
+        "background": {
+            top: 0,
+            left: 0,
+            width: 100,
+            height: 100,
+            background: "black",
+        }
+    }));
+    const styleModal = useStyles();
+    if (show) {
+        return (react_1.default.createElement("div", { className: styleModal.background },
+            react_1.default.createElement("div", { className: "content" },
+                react_1.default.createElement("p", null, "\u6295\u7A3F\u5B8C\u4E86"))));
+    }
+    else {
+        return null;
+    }
+};
+exports.default = NewModal;
 
 
 /***/ }),
@@ -81700,6 +81738,7 @@ const axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules
 const browser_image_compression_1 = __importDefault(__webpack_require__(/*! browser-image-compression */ "./node_modules/browser-image-compression/dist/browser-image-compression.mjs"));
 const ImageUp_1 = __importDefault(__webpack_require__(/*! ./ImageUp */ "./resources/ts/components/ImageUp.tsx"));
 const PostalCode_1 = __importDefault(__webpack_require__(/*! ./PostalCode */ "./resources/ts/components/PostalCode.tsx"));
+const NewModal_1 = __importDefault(__webpack_require__(/*! ./NewModal */ "./resources/ts/components/NewModal.tsx"));
 const react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 const styles_1 = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/index.js");
 ;
@@ -81714,6 +81753,8 @@ const PlaceForm = () => {
     // 投稿画像のstateを設定
     const [photos, setPhotos] = react_1.useState([]);
     const [address, setAddress] = react_1.useState("");
+    const [show, setShow] = react_1.useState(false);
+    // const modalOn = () => setShow(true);
     const onSubmit = (data) => __awaiter(void 0, void 0, void 0, function* () {
         console.log(data);
         const { name, comment, tags } = data;
@@ -81741,7 +81782,6 @@ const PlaceForm = () => {
         photos.map((photo) => __awaiter(void 0, void 0, void 0, function* () {
             return {
                 blob: yield browser_image_compression_1.default(photo, compressOptions)
-                // name: photo.name,
             };
         })));
         // console.log(compressedPhotoData);
@@ -81765,11 +81805,11 @@ const PlaceForm = () => {
                 "content-type": "multipart/form-data",
             },
         })
-            .then((response) => {
-            alert("送信しました");
-            console.log(...formData.keys());
+            .then(() => {
+            // ここにモーダルコンポーネント
+            return setShow(true);
         })
-            .catch((error) => {
+            .catch(() => {
             alert("エラーが発生しました。");
         });
     });
@@ -81785,24 +81825,28 @@ const PlaceForm = () => {
     }));
     const classes = useStyles();
     // html
-    return (react_1.default.createElement("form", { onSubmit: handleSubmit(onSubmit) },
-        react_1.default.createElement("div", { className: classes.dataContainer },
-            react_1.default.createElement("label", null, "\u5834\u6240\u306E\u540D\u524D"),
-            react_1.default.createElement("input", { name: "name", 
-                // refのなかにバリデーションルールを記述
-                ref: register({ required: true }) }),
-            react_1.default.createElement("label", null, "\u30B3\u30E1\u30F3\u30C8"),
-            react_1.default.createElement("input", { name: "comment", ref: register({ required: true }) })),
-        react_1.default.createElement("div", { className: classes.AddressUpload },
-            react_1.default.createElement(PostalCode_1.default, { name: "address", address: address, setAddress: setAddress })),
-        react_1.default.createElement("div", { className: classes.photoUpload },
-            react_1.default.createElement(ImageUp_1.default, { name: "photos", photos: photos, setPhotos: setPhotos })),
-        react_1.default.createElement("div", { className: classes.tagsUpload },
-            react_1.default.createElement("label", null, "\u30BF\u30B0"),
-            react_1.default.createElement("input", { name: "tags", ref: register() })),
-        react_1.default.createElement("div", null,
-            react_1.default.createElement("input", { type: "submit" })),
-        react_1.default.createElement("div", { className: classes.button })));
+    return (react_1.default.createElement(react_1.default.Fragment, null,
+        react_1.default.createElement("form", { onSubmit: handleSubmit(onSubmit) },
+            react_1.default.createElement("div", { className: classes.dataContainer },
+                react_1.default.createElement("label", null, "\u5834\u6240\u306E\u540D\u524D"),
+                react_1.default.createElement("input", { name: "name", 
+                    // refのなかにバリデーションルールを記述
+                    ref: register({ required: true, maxLength: 30 }) }),
+                errors.address && react_1.default.createElement("span", null, "\u6587\u5B57\u6570\u306F\u6700\u592730\u6587\u5B57\u3067\u3059"),
+                react_1.default.createElement("label", null, "\u30B3\u30E1\u30F3\u30C8"),
+                react_1.default.createElement("input", { name: "comment", ref: register({ required: true, maxLength: 200 }) }),
+                errors.comment && react_1.default.createElement("span", null, "\u6587\u5B57\u6570\u306F\u6700\u5927200\u6587\u5B57\u3067\u3059")),
+            react_1.default.createElement("div", { className: classes.AddressUpload },
+                react_1.default.createElement(PostalCode_1.default, { name: "address", address: address, setAddress: setAddress })),
+            react_1.default.createElement("div", { className: classes.photoUpload },
+                react_1.default.createElement(ImageUp_1.default, { name: "photos", photos: photos, setPhotos: setPhotos })),
+            react_1.default.createElement("div", { className: classes.tagsUpload },
+                react_1.default.createElement("label", null, "\u30BF\u30B0"),
+                react_1.default.createElement("input", { name: "tags", ref: register() })),
+            react_1.default.createElement("div", null,
+                react_1.default.createElement("input", { type: "submit" })),
+            react_1.default.createElement("div", { className: classes.button })),
+        react_1.default.createElement(NewModal_1.default, { show: show })));
 };
 exports.default = PlaceForm;
 

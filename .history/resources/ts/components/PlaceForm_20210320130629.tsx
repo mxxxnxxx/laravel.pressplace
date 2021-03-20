@@ -20,9 +20,9 @@ const PlaceForm: React.FC = () => {
   // registerでバリデーション
   // errorsでバリデーションエラーのハンドリング
   // handleSubmitで送信
-  const { register, errors, handleSubmit } = useForm<Inputs>({
+  const { register, errors, handleSubmit, watch } = useForm<Inputs>({
     // 初回バリデーションのタイミング(mode)をonBlurに設定
-    mode: "onBlur",
+    mode: "onBlur"
   });
 
   // 投稿画像のstateを設定
@@ -93,8 +93,7 @@ const PlaceForm: React.FC = () => {
     })
       .then(() => {
         // ここにモーダルコンポーネント
-        return setShow(true);
-        
+        setShow(true);
       })
       .catch(() => {
         alert("エラーが発生しました。");
@@ -129,6 +128,7 @@ const PlaceForm: React.FC = () => {
           // refのなかにバリデーションルールを記述
           ref={register({required : true, maxLength: 30 })}
           // error={errors.name !== undefined}
+          
           />
           {errors.address && <span>文字数は最大30文字です</span>}  
         <label>コメント</label>

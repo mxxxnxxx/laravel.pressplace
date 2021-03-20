@@ -1,9 +1,5 @@
-// import { type } from 'os';
 import React, { useState, useEffect } from 'react';
-// import PhotoSample from "../PhotoSample";
 import {makeStyles,createStyles} from "@material-ui/core/styles"
-import { border } from '@material-ui/system';
-// import { useForm } from "react-hook-form";
 
 // interfaceでオブジェクトの型を定義
 interface PhotosUploadProps {
@@ -130,26 +126,25 @@ const useStyles = makeStyles(() =>
     "plus": {},
     "input":{}
   }))
-const classes = useStyles();
+const stylePhot = useStyles();
 
 return (
     <>
-    <div className={classes.topContainer}>
+    <div className={stylePhot.topContainer}>
       {/* スプレットで投入される画像を展開 */}
       {/* [...Array(3)]で3つまでのからの配列を作成 */}
       {/* mapメソットでそれぞれの画像に */}
       {/* if文の省略形が使われている なければサンプルが出る */}
-      
         {[...Array(3)].map((_: number, index: number) =>
           index < photos.length ? (
             <button
               type="button"
-              className={classes.imageContainer}
+              className={stylePhot.imageContainer}
               key={index}
               onClick={() => handleCancel(index)}
             >
-              <img 
-                className={classes.image}
+              <img
+                className={stylePhot.image}
                 src={URL.createObjectURL(photos[index])}
                 alt={`あなたの写真 ${index + 1}`}
               />
@@ -171,15 +166,15 @@ return (
         <p>※jpeg, png, bmp, gif, svg以外のファイル形式は表示されません</p>
       )}
 
-      <div className={classes.bottomContainer}>
+      <div className={stylePhot.bottomContainer}>
         <div>
-          <p className={classes.note}>※最大3枚まで</p>
+          <p className={stylePhot.note}>※最大3枚まで</p>
         </div>
-        <label className={classes.label} htmlFor={name}>
-          <div className={classes.plus}></div>
+        <label className={stylePhot.label} htmlFor={name}>
+          <div className={stylePhot.plus}></div>
           写真を追加
           <input
-            className={classes.input}
+            className={stylePhot.input}
             type="file"
             name={name}
             id={name}
