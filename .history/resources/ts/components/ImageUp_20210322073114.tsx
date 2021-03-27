@@ -1,29 +1,29 @@
 import React, { useState, useEffect } from 'react';
-import { makeStyles, createStyles } from "@material-ui/core/styles"
+import {makeStyles,createStyles} from "@material-ui/core/styles"
 
 // interfaceでオブジェクトの型を定義
 interface PhotosUploadProps {
-  name: string;
-  componentRef?: (instance: HTMLInputElement | null) => void;
-  photos: File[];
-  setPhotos: (files: File[]) => void;
+        name: string;
+        componentRef?: (instance: HTMLInputElement | null) => void;
+        photos: File[];
+        setPhotos: (files: File[]) => void;
 }
 
 
 // ここからreactのいつものコンポーネント
 // 定めたPhotosUploadPropsでかたのしていもおこなっている
 const ImageUp: React.FC<PhotosUploadProps> = ({
-  name,
-  componentRef,
-  photos,
-  setPhotos,
-}: PhotosUploadProps): React.ReactElement => {
+        name,
+        componentRef,
+        photos,
+        setPhotos,
+    }: PhotosUploadProps): React.ReactElement => {
   // hooksのstateを定義
   // エラーをstateで管理
   const [isSameError, setIsSameError] = useState(false);
   const [isNumberError, setIsNumberError] = useState(false);
   const [isFileTypeError, setIsFileTypeError] = useState(false);
-
+    
   //  エラーを初期化falseに戻す
   const resetErrors = () => {
     setIsSameError(false);
@@ -34,7 +34,7 @@ const ImageUp: React.FC<PhotosUploadProps> = ({
   // 以下で非同期の関数を作成している
   // typescriptでイベントを取り扱う時はHTMLInputElementを型に指定
   const handleFile = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    // もしイベントファイルがnullでかつファイル名が0文字であれば処理を終了
+  // もしイベントファイルがnullでかつファイル名が0文字であれば処理を終了
     if (event.target.files === null || event.target.files.length === 0) {
       return;
     }
@@ -52,7 +52,6 @@ const ImageUp: React.FC<PhotosUploadProps> = ({
       if (
         ![
           "image/gif",
-          "image/jpg",
           "image/jpeg",
           "image/png",
           "image/bmp",
@@ -79,7 +78,7 @@ const ImageUp: React.FC<PhotosUploadProps> = ({
       return;
     }
 
-    // いままでからだったphotosにpickedPhotosを統合しいれる
+// いままでからだったphotosにpickedPhotosを統合しいれる
     // pickedPhotosは添付された写真じたいがはいっている
     const concatPhotos = photos.concat(pickedPhotos);
     // ４枚以上でエラー
@@ -89,10 +88,10 @@ const ImageUp: React.FC<PhotosUploadProps> = ({
     // sliceでインデックス０−２までの中身をsetPhotosにいれる
     setPhotos(concatPhotos.slice(0, 3));
   };
+  mtmt
+  
 
-
-
-
+  
   const handleCancel = (photoIndex: number) => {
     // windowで確認を取る
     if (confirm("選択した画像を消してよろしいですか？")) {
@@ -109,36 +108,36 @@ const ImageUp: React.FC<PhotosUploadProps> = ({
 
 
   // styleのテーマ
-  const useStyles = makeStyles(() =>
-    createStyles({
-      "topContainer": {
+const useStyles = makeStyles(() =>
+  createStyles({
+    "topContainer": {
+      
+    },
+    "imageContainer": {
 
-      },
-      "imageContainer": {
+    },
+    "image": {
+      width: 200,
+      margin: 10,
+      
+    },
+    "bottomContainer": {
+      
+    },
+    "note": {},
+    "label": {},
+    "plus": {},
+    "input":{}
+  }))
+const stylePhot = useStyles();
 
-      },
-      "image": {
-        width: 200,
-        margin: 10,
-
-      },
-      "bottomContainer": {
-
-      },
-      "note": {},
-      "label": {},
-      "plus": {},
-      "input": {}
-    }))
-  const stylePhot = useStyles();
-
-  return (
+return (
     <>
-      <div className={stylePhot.topContainer}>
-        {/* スプレットで投入される画像を展開 */}
-        {/* [...Array(3)]で3つまでのからの配列を作成 */}
-        {/* mapメソットでそれぞれの画像に */}
-        {/* if文の省略形が使われている なければサンプルが出る */}
+    <div className={stylePhot.topContainer}>
+      {/* スプレットで投入される画像を展開 */}
+      {/* [...Array(3)]で3つまでのからの配列を作成 */}
+      {/* mapメソットでそれぞれの画像に */}
+      {/* if文の省略形が使われている なければサンプルが出る */}
         {[...Array(3)].map((_: number, index: number) =>
           index < photos.length ? (
             <button
@@ -154,9 +153,9 @@ const ImageUp: React.FC<PhotosUploadProps> = ({
               />
             </button>
           ) : (
-            <label htmlFor={name} key={index}>
-              {/* <PhotoSample number={index + 1} /> */}
-            </label>
+              <label htmlFor={name} key={index}>
+                {/* <PhotoSample number={index + 1} /> */}
+              </label>
           )
         )}
       </div>
@@ -192,4 +191,35 @@ const ImageUp: React.FC<PhotosUploadProps> = ({
     </>
   );
 };
+
+
+
+
+
+
+
+
+
+//         // 以下俺のオリジナル
+//     const { register, handleSubmit, watch, errors } = useForm();
+//     const onSubmit = (data:FormData):void => console.log(data);
+
+//     return (
+//         <>
+//             <div className="input-form">
+//                 <form onSubmit={handleSubmit(onSubmit)}>
+//                 <div className="inner">
+//                     <input
+//                         type="file"
+//                         accept="image/*"
+//                         className="input"
+//                         name="place_image"
+//                     />
+//                 </div>
+//                 </form>
+//             </div>
+//         </>
+//     )
+// }
+
 export default ImageUp;

@@ -1,7 +1,6 @@
 import React from 'react';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
-import Link from '@material-ui/core/Link';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -10,13 +9,34 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
 interface modalProps {
-  open: boolean,
+  show: boolean,
   modalOff: () => void
 }
 
-const NewModal: React.FC<modalProps> = ({ open, modalOff }) => {
+const NewModal: React.FC<modalProps> = ({ show, modalOff }) => {
+  const [open, setOpen] = React.useState(false);
+  
+  if (show) {
+    setOpen(true);
+  } else {
+    setOpen(false);
+  }
+
+  
+  // const useStyles = makeStyles(() =>
+  //   createStyles({
+  //     "background": {
+  //       top: 0,
+  //       left: 0,
+  //       width: 100,
+  //       height: 100,
+  //       background: "black",
+  //     }
+  //   }))
+  // const styleModal = useStyles();
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
+
 
   return (
     <div>
@@ -33,8 +53,11 @@ const NewModal: React.FC<modalProps> = ({ open, modalOff }) => {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-        <Link href="/places"  color="inherit">topへ戻る</Link>
-        <Button autoFocus onClick={modalOff} color="primary">更に投稿 </Button>
+          <Button autoFocus onClick={modalOff} color="primary">
+            Disagree
+          </Button>
+          {/* <button onClick={topページに移動}></button> */}
+          <button onClick={modalOff}>更に投稿 </button>
         </DialogActions>
       </Dialog>
 

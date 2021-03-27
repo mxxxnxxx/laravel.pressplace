@@ -49,6 +49,7 @@ class PlaceController extends Controller
            
             // 繰り返し
             foreach ($PlaceImages as $index => $im) {
+                \Debugbar::info($im);
                 $img = \Image::make($im);
                     // resize
                 $img->fit(100, 100, function ($constraint) {

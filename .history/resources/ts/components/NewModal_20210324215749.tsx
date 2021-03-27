@@ -33,7 +33,7 @@ const NewModal: React.FC<modalProps> = ({ open, modalOff }) => {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-        <Link href="/places"  color="inherit">topへ戻る</Link>
+        <Link href="/places" onClick={preventDefault} color="inherit">topへ戻る</Link>
         <Button autoFocus onClick={modalOff} color="primary">更に投稿 </Button>
         </DialogActions>
       </Dialog>

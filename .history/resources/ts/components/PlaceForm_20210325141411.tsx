@@ -158,8 +158,21 @@ const PlaceForm: React.FC = () => {
             ref={register()}
           />
         </div>
-          <Button variant={'contained'} type="submit" disabled={!formState.isDirty || formState.isSubmitting}>登録</Button>
-          <Button  type="button" disabled={!formState.isDirty || formState.isSubmitting} onClick={() => reset()}>クリア</Button>
+        <div>
+          <input type="submit" />
+        </div>
+
+        <div className={classes.button}>
+
+          <Button
+          variant={'secondary'}
+          type="button"
+          disabled={!formState.isDirty || formState.isSubmitting}
+          onClick={reset}>
+            クリア
+          </Button>
+
+        </div>
       </form>
       <NewModal open={open} modalOff={(): void => setOpen(false)} />
 

@@ -54,6 +54,7 @@ class PlaceController extends Controller
                 $img->fit(100, 100, function ($constraint) {
                     $constraint->upsize();
                 });
+                \Debugbar::info($im);
                 $extension = $im->getClientOriginalExtension();
                 $file_name = "{$request->name}_{$place->user_id}_{$index}.{$extension}";
                 $save_path =  storage_path('app/public/place_image/' . $file_name);

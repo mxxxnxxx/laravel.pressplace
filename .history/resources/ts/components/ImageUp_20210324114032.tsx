@@ -192,4 +192,35 @@ const ImageUp: React.FC<PhotosUploadProps> = ({
     </>
   );
 };
+
+
+
+
+
+
+
+
+
+//         // 以下俺のオリジナル
+//     const { register, handleSubmit, watch, errors } = useForm();
+//     const onSubmit = (data:FormData):void => console.log(data);
+
+//     return (
+//         <>
+//             <div className="input-form">
+//                 <form onSubmit={handleSubmit(onSubmit)}>
+//                 <div className="inner">
+//                     <input
+//                         type="file"
+//                         accept="image/*"
+//                         className="input"
+//                         name="place_image"
+//                     />
+//                 </div>
+//                 </form>
+//             </div>
+//         </>
+//     )
+// }
+
 export default ImageUp;

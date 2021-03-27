@@ -5,7 +5,6 @@ import PhotosUpload from "./ImageUp";
 import PostalCode from "./PostalCode";
 import NewModal from "./NewModal";
 import React, { useState } from 'react';
-import Button from '@material-ui/core/Button';
 import { makeStyles, createStyles } from "@material-ui/core/styles"
 
 
@@ -21,7 +20,7 @@ const PlaceForm: React.FC = () => {
   // registerでバリデーション
   // errorsでバリデーションエラーのハンドリング
   // handleSubmitで送信
-  const { register, errors, handleSubmit, reset, formState} = useForm<Inputs>({
+  const { register, errors, handleSubmit } = useForm<Inputs>({
     // 初回バリデーションのタイミング(mode)をonBlurに設定
     mode: "onBlur",
   });
@@ -63,14 +62,15 @@ const PlaceForm: React.FC = () => {
       // 一枚一枚の順番を変えないため改めてasyncで処理をハンドリング
       photos.map(async (photo) => {
         return {
-          blob: await imageCompression(photo, compressOptions),
-          name: photo.name
+          blob: await imageCompression(photo, compressOptions)
         };
       })
     );
+    // console.log(compressedPhotoData);
 
     for (let i = 0; i < compressedPhotoData.length; i++) {
-      formData.append("place_image_" + i, compressedPhotoData[i].blob, compressedPhotoData[i].name);
+      formData.append("place_image_" + i, compressedPhotoData[i].blob,
+      );
 
     }
 
@@ -81,8 +81,10 @@ const PlaceForm: React.FC = () => {
     //   formData.append("place_image", photoData.blob, photoData.name);
     // });
     console.log(...formData.entries());
-
     // axiosの記述方法 postメソッドを使わないやり方で記述
+    // const modalOn = (): void => setShow(true);
+
+
     axios({
       // php側のstoreメソッドのルートのurl
       url: "/place",
@@ -144,13 +146,14 @@ const PlaceForm: React.FC = () => {
         <div className={classes.AddressUpload}>
           {/* PostalCodeで値を紐付ける必要がある  */}
           <PostalCode name="address" address={address} setAddress={setAddress} />
+
         </div>
 
         <div className={classes.photoUpload}>
           {/* propsでphotosのstateをわたす */}
           <PhotosUpload name="photos" photos={photos} setPhotos={setPhotos} />
-        </div>
 
+        </div>
         <div className={classes.tagsUpload}>
           <label>タグ</label>
           <input
@@ -158,8 +161,15 @@ const PlaceForm: React.FC = () => {
             ref={register()}
           />
         </div>
-          <Button variant={'contained'} type="submit" disabled={!formState.isDirty || formState.isSubmitting}>登録</Button>
-          <Button  type="button" disabled={!formState.isDirty || formState.isSubmitting} onClick={() => reset()}>クリア</Button>
+        <div>
+          <input type="submit" />
+        </div>
+
+        <div className={classes.button}>
+
+          {/* <button disabled={ } /> */}
+
+        </div>
       </form>
       <NewModal open={open} modalOff={(): void => setOpen(false)} />
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
-import Link from '@material-ui/core/Link';
+import List from '@material-ui/core/List';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -33,7 +33,8 @@ const NewModal: React.FC<modalProps> = ({ open, modalOff }) => {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-        <Link href="/places"  color="inherit">topへ戻る</Link>
+          1
+        <Link href="/places" onClick={preventDefault} color="inherit">topへ戻る</Link>
         <Button autoFocus onClick={modalOff} color="primary">更に投稿 </Button>
         </DialogActions>
       </Dialog>

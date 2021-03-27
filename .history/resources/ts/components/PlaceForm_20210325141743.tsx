@@ -5,7 +5,9 @@ import PhotosUpload from "./ImageUp";
 import PostalCode from "./PostalCode";
 import NewModal from "./NewModal";
 import React, { useState } from 'react';
+import ButtonToolbar from '@material-ui/core/Button';
 import Button from '@material-ui/core/Button';
+
 import { makeStyles, createStyles } from "@material-ui/core/styles"
 
 
@@ -158,8 +160,11 @@ const PlaceForm: React.FC = () => {
             ref={register()}
           />
         </div>
-          <Button variant={'contained'} type="submit" disabled={!formState.isDirty || formState.isSubmitting}>登録</Button>
-          <Button  type="button" disabled={!formState.isDirty || formState.isSubmitting} onClick={() => reset()}>クリア</Button>
+        
+        <ButtonToolbar>
+          <Button variant={'primary'} type="submit" disabled={!formState.isDirty || formState.isSubmitting}>登録</Button>
+          <Button variant={'secondary'} type="button" disabled={!formState.isDirty || formState.isSubmitting} onClick={reset}>クリア</Button>
+        </ButtonToolbar>
       </form>
       <NewModal open={open} modalOff={(): void => setOpen(false)} />
 

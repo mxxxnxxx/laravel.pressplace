@@ -36,7 +36,7 @@ class PlaceController extends Controller
                 'comment' => $request->comment,
                 'address' => $request->address
                 ]);
-         
+         \Debugbar::info($request->place_image_0);
          
         // 画像の処理
         // 一枚目の写真がなければ処理をしない

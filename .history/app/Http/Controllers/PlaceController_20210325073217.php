@@ -49,12 +49,13 @@ class PlaceController extends Controller
            
             // 繰り返し
             foreach ($PlaceImages as $index => $im) {
+                \Debugbar::info($im);
                 $img = \Image::make($im);
                     // resize
                 $img->fit(100, 100, function ($constraint) {
                     $constraint->upsize();
                 });
-                $extension = $im->getClientOriginalExtension();
+                $extension = $im->getMimeType();
                 $file_name = "{$request->name}_{$place->user_id}_{$index}.{$extension}";
                 $save_path =  storage_path('app/public/place_image/' . $file_name);
                 $img->save($save_path);

@@ -36,8 +36,7 @@ class PlaceController extends Controller
                 'comment' => $request->comment,
                 'address' => $request->address
                 ]);
-         
-         
+        
         // 画像の処理
         // 一枚目の写真がなければ処理をしない
         if($request->place_image_0){
@@ -46,7 +45,8 @@ class PlaceController extends Controller
                 $place_image = "place_image_{$i}";
                 array_push($PlaceImages, $request->$place_image);
             };
-           
+            \Debugbar::info($PlaceImages);
+            return
             // 繰り返し
             foreach ($PlaceImages as $index => $im) {
                 $img = \Image::make($im);

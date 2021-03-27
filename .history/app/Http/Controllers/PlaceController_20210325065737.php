@@ -36,8 +36,7 @@ class PlaceController extends Controller
                 'comment' => $request->comment,
                 'address' => $request->address
                 ]);
-         
-         
+        
         // 画像の処理
         // 一枚目の写真がなければ処理をしない
         if($request->place_image_0){
@@ -46,21 +45,22 @@ class PlaceController extends Controller
                 $place_image = "place_image_{$i}";
                 array_push($PlaceImages, $request->$place_image);
             };
-           
+            \Debugbar::info($PlaceImages);
+            return
             // 繰り返し
-            foreach ($PlaceImages as $index => $im) {
-                $img = \Image::make($im);
-                    // resize
-                $img->fit(100, 100, function ($constraint) {
-                    $constraint->upsize();
-                });
-                $extension = $im->getClientOriginalExtension();
-                $file_name = "{$request->name}_{$place->user_id}_{$index}.{$extension}";
-                $save_path =  storage_path('app/public/place_image/' . $file_name);
-                $img->save($save_path);
-                $place->place_images()->create(['filename' => $file_name]);
+            // foreach ($PlaceImages as $index => $im) {
+            //     $img = \Image::make($im);
+            //         // resize
+            //     $img->fit(100, 100, function ($constraint) {
+            //         $constraint->upsize();
+            //     });
+            //     $extension = $im->getClientOriginalExtension();
+            //     $file_name = "{$request->name}_{$place->user_id}_{$index}.{$extension}";
+            //     $save_path =  storage_path('app/public/place_image/' . $file_name);
+            //     $img->save($save_path);
+            //     $place->place_images()->create(['filename' => $file_name]);
             }
-        }
+        // }
         
 
         // tagの処理

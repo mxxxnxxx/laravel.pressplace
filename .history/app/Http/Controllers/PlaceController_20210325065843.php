@@ -36,8 +36,7 @@ class PlaceController extends Controller
                 'comment' => $request->comment,
                 'address' => $request->address
                 ]);
-         
-         
+        
         // 画像の処理
         // 一枚目の写真がなければ処理をしない
         if($request->place_image_0){

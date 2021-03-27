@@ -5,7 +5,6 @@ import PhotosUpload from "./ImageUp";
 import PostalCode from "./PostalCode";
 import NewModal from "./NewModal";
 import React, { useState } from 'react';
-import Button from '@material-ui/core/Button';
 import { makeStyles, createStyles } from "@material-ui/core/styles"
 
 
@@ -21,7 +20,7 @@ const PlaceForm: React.FC = () => {
   // registerでバリデーション
   // errorsでバリデーションエラーのハンドリング
   // handleSubmitで送信
-  const { register, errors, handleSubmit, reset, formState} = useForm<Inputs>({
+  const { register, errors, handleSubmit } = useForm<Inputs>({
     // 初回バリデーションのタイミング(mode)をonBlurに設定
     mode: "onBlur",
   });
@@ -158,8 +157,15 @@ const PlaceForm: React.FC = () => {
             ref={register()}
           />
         </div>
-          <Button variant={'contained'} type="submit" disabled={!formState.isDirty || formState.isSubmitting}>登録</Button>
-          <Button  type="button" disabled={!formState.isDirty || formState.isSubmitting} onClick={() => reset()}>クリア</Button>
+        <div>
+          <input type="submit" />
+        </div>
+
+        <div className={classes.button}>
+
+          {/* <button disabled={ } /> */}
+
+        </div>
       </form>
       <NewModal open={open} modalOff={(): void => setOpen(false)} />
 
