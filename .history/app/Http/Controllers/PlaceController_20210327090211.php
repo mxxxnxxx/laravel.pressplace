@@ -6,8 +6,11 @@ use App\Http\Requests\PlaceRequest;
 use App\Place;
 use App\Place_image;
 use App\Tag;
+// 以下いらない？
+// use App\Place_image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use SebastianBergmann\Environment\Console;
 
 class PlaceController extends Controller
 {
@@ -33,20 +36,17 @@ class PlaceController extends Controller
                 'comment' => $request->comment,
                 'address' => $request->address
                 ]);
-
-            
-
+         
+         
         // 画像の処理
         // 一枚目の写真がなければ処理をしない
         if($request->place_image_0){
             $PlaceImages = [];
-            $count = count($request->file());
-            \Debugbar::info($count);
-            for($i = 0; $i < $count; $i++){
+            for($i=0; $i<3; $i++){
                 $place_image = "place_image_{$i}";
                 array_push($PlaceImages, $request->$place_image);
             };
-           \Debugbar::info($PlaceImages);
+           
             // 繰り返し
             foreach ($PlaceImages as $index => $im) {
                 $img = \Image::make($im);
@@ -57,11 +57,8 @@ class PlaceController extends Controller
                 //     $constraint->upsize();
                 // });
                 $extension = $im->getClientOriginalExtension();
-                \Debugbar::info($extension);
                 $file_name = "{$request->name}_{$place->user_id}_{$index}.{$extension}";
-                \Debugbar::info($file_name);
                 $save_path =  storage_path('app/public/place_image/' . $file_name);
-                \Debugbar::info($save_path);
                 $img->save($save_path);
                 $place->place_images()->create(['filename' => $file_name]);
             }

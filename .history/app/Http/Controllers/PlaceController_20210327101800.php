@@ -52,7 +52,7 @@ class PlaceController extends Controller
                 $img = \Image::make($im);
                     // resize
                     \Debugbar::info($im);
-                    \Debugbar::info($img);
+                    // \Debugbar::info($img);
                 // $img->fit(100, 100, function ($constraint) {
                 //     $constraint->upsize();
                 // });
