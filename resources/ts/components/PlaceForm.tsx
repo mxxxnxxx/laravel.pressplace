@@ -21,7 +21,7 @@ const PlaceForm: React.FC = () => {
   // registerでバリデーション
   // errorsでバリデーションエラーのハンドリング
   // handleSubmitで送信
-  const { register, errors, handleSubmit, reset, formState} = useForm<Inputs>({
+  const { register, errors, handleSubmit, reset, formState } = useForm<Inputs>({
     // 初回バリデーションのタイミング(mode)をonBlurに設定
     mode: "onBlur",
   });
@@ -114,6 +114,9 @@ const PlaceForm: React.FC = () => {
       "AddressUpload": {},
       "tagsUpload": {},
       "button": {
+      },
+      "commentContainer": {
+        borderColor: 'red'
       }
 
 
@@ -133,6 +136,12 @@ const PlaceForm: React.FC = () => {
           // error={errors.name !== undefined}
           />
           {errors.address && <span>文字数は最大30文字です</span>}
+        </div>
+        <div className={classes.AddressUpload}>
+          {/* PostalCodeで値を紐付ける必要がある  */}
+          <PostalCode name="address" address={address} setAddress={setAddress} />
+        </div>
+        <div className={classes.dataContainer}>
           <label>コメント</label>
           <input
             name="comment"
@@ -140,12 +149,6 @@ const PlaceForm: React.FC = () => {
           />
           {errors.comment && <span>文字数は最大200文字です</span>}
         </div>
-
-        <div className={classes.AddressUpload}>
-          {/* PostalCodeで値を紐付ける必要がある  */}
-          <PostalCode name="address" address={address} setAddress={setAddress} />
-        </div>
-
         <div className={classes.photoUpload}>
           {/* propsでphotosのstateをわたす */}
           <PhotosUpload name="photos" photos={photos} setPhotos={setPhotos} />
@@ -158,8 +161,8 @@ const PlaceForm: React.FC = () => {
             ref={register()}
           />
         </div>
-          <Button variant={'contained'} type="submit" disabled={!formState.isDirty || formState.isSubmitting}>登録</Button>
-          <Button  type="button" disabled={!formState.isDirty || formState.isSubmitting} onClick={() => reset()}>クリア</Button>
+        <Button variant={'contained'} type="submit" disabled={!formState.isDirty || formState.isSubmitting}>登録</Button>
+        <Button type="button" disabled={!formState.isDirty || formState.isSubmitting} onClick={() => reset()}>クリア</Button>
       </form>
       <NewModal open={open} modalOff={(): void => setOpen(false)} />
 

@@ -88778,7 +88778,7 @@ const NewModal = ({ open, modalOff }) => {
     const fullScreen = useMediaQuery_1.default(theme.breakpoints.down('sm'));
     return (react_1.default.createElement("div", null,
         react_1.default.createElement(Dialog_1.default, { fullScreen: fullScreen, open: open, "aria-labelledby": "responsive-dialog-title" },
-            react_1.default.createElement(DialogTitle_1.default, { id: "responsive-dialog-title" }, "Use Google's location service?"),
+            react_1.default.createElement(DialogTitle_1.default, { id: "responsive-dialog-title" }, "おめでとう!!"),
             react_1.default.createElement(DialogContent_1.default, null,
                 react_1.default.createElement(DialogContentText_1.default, null, "\u6295\u7A3F\u5B8C\u4E86")),
             react_1.default.createElement(DialogActions_1.default, null,
@@ -88921,7 +88921,10 @@ const PlaceForm = () => {
         "photoUpload": {},
         "AddressUpload": {},
         "tagsUpload": {},
-        "button": {}
+        "button": {},
+        "commentContainer": {
+            borderColor: 'red'
+        }
     }));
     const classes = useStyles();
     // html
@@ -88932,12 +88935,13 @@ const PlaceForm = () => {
                 react_1.default.createElement("input", { name: "name", 
                     // refのなかにバリデーションルールを記述
                     ref: register({ required: true, maxLength: 30 }) }),
-                errors.address && react_1.default.createElement("span", null, "\u6587\u5B57\u6570\u306F\u6700\u592730\u6587\u5B57\u3067\u3059"),
+                errors.address && react_1.default.createElement("span", null, "\u6587\u5B57\u6570\u306F\u6700\u592730\u6587\u5B57\u3067\u3059")),
+            react_1.default.createElement("div", { className: classes.AddressUpload },
+                react_1.default.createElement(PostalCode_1.default, { name: "address", address: address, setAddress: setAddress })),
+            react_1.default.createElement("div", { className: classes.dataContainer },
                 react_1.default.createElement("label", null, "\u30B3\u30E1\u30F3\u30C8"),
                 react_1.default.createElement("input", { name: "comment", ref: register({ required: true, maxLength: 200 }) }),
                 errors.comment && react_1.default.createElement("span", null, "\u6587\u5B57\u6570\u306F\u6700\u5927200\u6587\u5B57\u3067\u3059")),
-            react_1.default.createElement("div", { className: classes.AddressUpload },
-                react_1.default.createElement(PostalCode_1.default, { name: "address", address: address, setAddress: setAddress })),
             react_1.default.createElement("div", { className: classes.photoUpload },
                 react_1.default.createElement(ImageUp_1.default, { name: "photos", photos: photos, setPhotos: setPhotos })),
             react_1.default.createElement("div", { className: classes.tagsUpload },
